@@ -4,7 +4,7 @@ using lu8890.TechReviews.LeetCode.Problems;
 namespace lu8890.TechReviewsTests.LeetCode.Problems
 {
     [TestClass()]
-    public class QuestionTests
+    public class EasyQuestionsTests
     {
         [TestMethod()]
         public void TwoSumTest()

@@ -62,7 +62,7 @@
     <Compile Include="DataStructures\TreeTests.cs" />
     <Compile Include="InterviewQuestions\PanoptoTests.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedListTests.cs" />
-    <Compile Include="LeetCode\Problems\QuestionTests.cs" />
+    <Compile Include="LeetCode\Problems\EasyQuestionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
