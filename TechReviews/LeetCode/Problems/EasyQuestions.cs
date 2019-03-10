@@ -303,5 +303,109 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 {']', '['}
             };
         }
+
+        /// <summary>
+        /// https://leetcode.com/problems/merge-two-sorted-lists/
+        /// Runtime: 92 ms, faster than 100.00% of C# online submissions for Merge Two Sorted Lists.
+        /// Memory Usage: 23.7 MB, less than 30.22% of C# online submissions for Merge Two Sorted Lists.
+        /// </summary>
+        /// <param name="l1"></param>
+        /// <param name="l2"></param>
+        /// <returns></returns>
+        public ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        {
+            if (!IsSortedList(l1) || (!IsSortedList(l2)))
+                return null;
+
+            if (l1 == null)
+                return l2;
+            else if (l2 == null)
+                return l1;
+
+            ListNode mergedNode = null;
+            ListNode traverseNode = null;
+
+            while ((l1 != null) && (l2 != null))
+            {
+                if (l1.val <= l2.val)
+                {
+                    if (mergedNode == null)
+                    {
+                        mergedNode = new ListNode(l1.val){ next = null};
+                    }
+                    else
+                    {
+                        traverseNode = mergedNode;
+                        while (traverseNode.next != null)
+                        {
+                            traverseNode = traverseNode.next;
+                        }
+
+                        traverseNode.next = new ListNode(l1.val) { next = null };
+                    }
+                    l1 = l1.next;
+                }
+                else
+                {
+                    if (mergedNode == null)
+                    {
+                        mergedNode = new ListNode(l2.val) { next = null };   
+                    }
+                    else
+                    {
+                        traverseNode = mergedNode;
+                        while (traverseNode.next != null)
+                            traverseNode = traverseNode.next;
+                        traverseNode.next = new ListNode(l2.val) { next = null };
+                    }
+                    l2 = l2.next;
+                }
+            }
+
+            while (l1 != null)
+            {
+                traverseNode = mergedNode;
+                while (traverseNode.next != null)
+                    traverseNode = traverseNode.next;
+                traverseNode.next = l1;
+                l1 = null;
+            }
+
+            while (l2 != null)
+            {
+                traverseNode = mergedNode;
+                while (traverseNode.next != null)
+                    traverseNode = traverseNode.next;
+                traverseNode.next = l2;
+                l2 = null;
+            }
+
+            return mergedNode;
+        }
+
+        private static bool IsSortedList(ListNode inputList)
+        {
+            if (inputList == null)
+                return true;
+            var min = inputList.val;
+            inputList = inputList.next;
+
+            while (inputList != null)
+            {
+                if (inputList.val < min)
+                    return false;
+
+                inputList = inputList.next;
+            }
+
+            return true;
+        }
+    }
+
+    public class ListNode
+    {
+         public int val;
+         public ListNode next;
+         public ListNode(int x) { val = x; }
     }
 }

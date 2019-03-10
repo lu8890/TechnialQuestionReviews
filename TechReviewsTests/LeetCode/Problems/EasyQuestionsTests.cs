@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.LeetCode.Problems;
 
 namespace lu8890.TechReviewsTests.LeetCode.Problems
@@ -91,6 +92,44 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Assert.AreEqual(false, q.IsValid("([)]"));
             Assert.AreEqual(true, q.IsValid("{[]}"));
             Assert.AreEqual(false, q.IsValid("(("));
+        }
+
+        [TestMethod()]
+        public void MergeTwoListsTest()
+        {
+            var q = new EasyQuestions();
+            var linkedList1 = new ListNode(1) {next = new ListNode(2)};
+            linkedList1.next.next = new ListNode(4);
+
+            var linkedList2 = new ListNode(1) { next = new ListNode(3) };
+            linkedList2.next.next = new ListNode(4);
+
+            var mergedList = q.MergeTwoLists(linkedList1, linkedList2);
+            Assert.AreEqual("1 1 2 3 4 4", GetLinkedListItems(mergedList));
+
+            linkedList1 = null;
+            linkedList2 = new ListNode(0) {next = null};
+            mergedList = q.MergeTwoLists(linkedList1, linkedList2);
+            Assert.AreEqual("0", GetLinkedListItems(mergedList));
+
+            linkedList2 = null;
+            linkedList1 = new ListNode(0) { next = null };
+            mergedList = q.MergeTwoLists(linkedList1, linkedList2);
+            Assert.AreEqual("0", GetLinkedListItems(mergedList));
+
+        }
+
+        private static string GetLinkedListItems(ListNode input)
+        {
+            var outputBuilder = new StringBuilder();
+
+            while (input != null)
+            {
+                outputBuilder.Append(input.val + " ");
+                input = input.next;
+            }
+
+            return outputBuilder.ToString().Trim();
         }
     }
 }
