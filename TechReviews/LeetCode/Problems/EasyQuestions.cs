@@ -400,7 +400,110 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             return true;
         }
+
+        /// <summary>
+        /// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+        /// Runtime: 596 ms, faster than 5.07% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 32.5 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int RemoveDuplicates(int[] nums)
+        {
+            if (nums == null)
+                return 0;
+            else if (nums.Length <= 2)
+                return nums.Distinct().ToArray().Length; ;
+
+            nums.OrderBy(x => x).ToArray();
+
+            int currentIndex = 0;
+            int endIndex = 1;
+            var reachedEndOfList = false;
+            var traverseIndex = 0;
+            var swapInt = 0;
+
+            while (endIndex <= nums.Length - 1)
+            {
+                if (nums[currentIndex] != nums[endIndex])
+                {
+                    if (endIndex == (currentIndex + 1))
+                    {
+                        currentIndex++;
+                        endIndex++;
+                    }
+                    else
+                    {
+                        reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                        while (!reachedEndOfList && (nums[endIndex + 1] == nums[endIndex]))
+                        {
+                            ++endIndex;
+                            reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                        }
+                        traverseIndex = endIndex;
+                        while (traverseIndex > currentIndex + 1)
+                        {
+                            swapInt = nums[traverseIndex - 1];
+                            nums[traverseIndex - 1] = nums[traverseIndex];
+                            nums[traverseIndex] = swapInt;
+                            --traverseIndex;
+
+                        }
+                        ++currentIndex;
+                        ++endIndex;
+                    }
+
+                }
+                else
+                {
+                    //searching for the next unique number
+                    ++endIndex;
+                    reachedEndOfList = (endIndex >= nums.Length - 1) ? true: false;
+
+                    while (!reachedEndOfList && (nums[currentIndex] == nums[endIndex]))
+                    {
+                        ++endIndex;
+                        reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                    }
+
+                    //check if the new value is unique.  If not, get the last position
+                    if (!reachedEndOfList)
+                    {
+                        while ((!reachedEndOfList) && (nums[endIndex] == nums[endIndex + 1]))
+                        {
+                            ++endIndex;
+                            reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                        }
+                    }
+
+                    if (endIndex <= nums.Length -1)
+                    {
+                        traverseIndex = endIndex;
+                        while (traverseIndex > currentIndex + 1)
+                        {
+                            swapInt = nums[traverseIndex - 1];
+                            nums[traverseIndex - 1] = nums[traverseIndex];
+                            nums[traverseIndex] = swapInt;
+                            --traverseIndex;
+
+                        }
+                    }
+
+                    ++currentIndex;
+                    ++endIndex;
+                }
+            }
+
+            
+
+            return nums.Distinct().ToArray().Length;
+
+            
+        }
     }
+
+
+
 
     public class ListNode
     {

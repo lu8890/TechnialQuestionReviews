@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.LeetCode.Problems;
 
@@ -130,6 +131,26 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             }
 
             return outputBuilder.ToString().Trim();
+        }
+
+        [TestMethod()]
+        public void RemoveDuplicatesTest()
+        {
+            var q = new EasyQuestions();
+            var testcase = new int[] {1, 1, 2};
+            var output = q.RemoveDuplicates(testcase);
+            testcase = new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+            output = q.RemoveDuplicates(testcase);
+            testcase = new[] {1, 1};
+            output = q.RemoveDuplicates(testcase);
+            testcase = new[] { 1, 2, 2 };
+            output = q.RemoveDuplicates(testcase);
+            testcase = new[] {1, 1, 2, 2};
+            output = q.RemoveDuplicates(testcase);
+
+            //Assert.AreEqual(2, q.RemoveDuplicates(testcase));
+            //Assert.AreEqual(5, q.RemoveDuplicates(new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}));
+
         }
     }
 }
