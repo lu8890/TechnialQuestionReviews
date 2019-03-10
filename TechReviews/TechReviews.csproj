@@ -50,7 +50,7 @@
     <Compile Include="InterviewQuestions\Panopto.cs" />
     <Compile Include="LeetCode\Competition\WeeklyContest127.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedList.cs" />
-    <Compile Include="LeetCode\Problems\TwoSum.cs" />
+    <Compile Include="LeetCode\Problems\EasyQuestions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

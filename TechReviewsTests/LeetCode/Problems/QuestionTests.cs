@@ -9,7 +9,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void TwoSumTest()
         {
-            var test = new Question(); ;
+            var test = new EasyQuestions(); ;
             Assert.AreEqual(null, test.TwoSum(new int[] { }, 10));
             Assert.AreEqual(null, test.TwoSum(new int[] { 1 }, 10));
             Assert.AreEqual(null, test.TwoSum(new int[] { 2, 3 }, 10));
@@ -31,7 +31,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void ReverseTest()
         {
-            Question q = new Question();
+            EasyQuestions q = new EasyQuestions();
             Assert.AreEqual(q.Reverse(1),1);
             Assert.AreEqual(q.Reverse(-1), -1);
             Assert.AreEqual(q.Reverse(12),21);
@@ -44,7 +44,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void IsPalindromeTest()
         {
-            Question q = new Question();
+            EasyQuestions q = new EasyQuestions();
             Assert.AreEqual(q.IsPalindrome(1), true);
             Assert.AreEqual(q.IsPalindrome(-1), false);
             Assert.AreEqual(q.IsPalindrome(12), false);
@@ -58,7 +58,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void RomanToIntTest()
         {
-            Question q = new Question();
+            EasyQuestions q = new EasyQuestions();
             Assert.AreEqual(q.RomanToInt("I"), 1);
             Assert.AreEqual(q.RomanToInt("i"), 1);
             Assert.AreEqual(q.RomanToInt("III"), 3);
@@ -71,7 +71,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void LongestCommonPrefixTest()
         {
-            Question q = new Question();
+            EasyQuestions q = new EasyQuestions();
             var testCase = new string[] {"TotalPackage"};
             Assert.AreEqual("TotalPackage", q.LongestCommonPrefix(testCase));
             testCase = new string[]{ "flower", "flow", "flight" };
@@ -83,7 +83,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void IsValidTest()
         {
-            Question q = new Question();
+            EasyQuestions q = new EasyQuestions();
             Assert.AreEqual(true, q.IsValid(""));
             Assert.AreEqual(true, q.IsValid("()"));
             Assert.AreEqual(true, q.IsValid("()[]{}"));
