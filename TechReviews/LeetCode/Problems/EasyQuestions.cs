@@ -405,6 +405,10 @@ namespace lu8890.TechReviews.LeetCode.Problems
         /// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
         /// Runtime: 596 ms, faster than 5.07% of C# online submissions for Remove Duplicates from Sorted Array.
         /// Memory Usage: 32.5 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
+        ///
+        /// second submission:
+        /// Runtime: 424 ms, faster than 11.42% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 32.6 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
@@ -413,12 +417,12 @@ namespace lu8890.TechReviews.LeetCode.Problems
             if (nums == null)
                 return 0;
             else if (nums.Length <= 2)
-                return nums.Distinct().ToArray().Length; ;
+                return nums.Distinct().ToArray().Length;
 
             nums.OrderBy(x => x).ToArray();
 
-            int currentIndex = 0;
-            int endIndex = 1;
+            var currentIndex = 0;
+            var endIndex = 1;
             var reachedEndOfList = false;
             var traverseIndex = 0;
             var swapInt = 0;
@@ -434,11 +438,11 @@ namespace lu8890.TechReviews.LeetCode.Problems
                     }
                     else
                     {
-                        reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                        reachedEndOfList = ReachedEndOfList(nums.Length, endIndex);
                         while (!reachedEndOfList && (nums[endIndex + 1] == nums[endIndex]))
                         {
                             ++endIndex;
-                            reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                            reachedEndOfList = ReachedEndOfList(nums.Length, endIndex);
                         }
                         traverseIndex = endIndex;
                         while (traverseIndex > currentIndex + 1)
@@ -458,12 +462,12 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 {
                     //searching for the next unique number
                     ++endIndex;
-                    reachedEndOfList = (endIndex >= nums.Length - 1) ? true: false;
+                    reachedEndOfList = ReachedEndOfList(nums.Length, endIndex);
 
                     while (!reachedEndOfList && (nums[currentIndex] == nums[endIndex]))
                     {
                         ++endIndex;
-                        reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                        reachedEndOfList = ReachedEndOfList(nums.Length, endIndex);
                     }
 
                     //check if the new value is unique.  If not, get the last position
@@ -472,7 +476,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                         while ((!reachedEndOfList) && (nums[endIndex] == nums[endIndex + 1]))
                         {
                             ++endIndex;
-                            reachedEndOfList = (endIndex >= nums.Length - 1) ? true : false;
+                            reachedEndOfList = ReachedEndOfList(nums.Length, endIndex);
                         }
                     }
 
@@ -494,11 +498,138 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 }
             }
 
-            
+            return nums.Distinct().ToArray().Length;            
+        }
 
+        private static bool ReachedEndOfList(int arraySize, int index)
+        {
+            return index >= (arraySize -1);
+        }
+
+        /// <summary>
+        /// Runtime: 268 ms, faster than 84.86% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 32.6 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
+        ///
+        /// second run:
+        /// Runtime: 264 ms, faster than 86.01% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 32.6 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int RemoveDuplicates2(int[] nums)
+        {
+            if (nums == null)
+                return 0;
+            nums.OrderBy(x => x).ToArray();
+
+            if (nums.Length <= 2)
+                return nums.Distinct().ToArray().Length;
+
+            var startIndex = 0;
+            var endIndex = 1;
+            var IsEndOfTraverse = false;
+            var swapInt = 0;
+
+            while (!IsEndOfTraverse)
+            {
+                IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                if (nums[startIndex] != nums[endIndex])
+                {
+                    if (startIndex == endIndex - 1)
+                    {
+                        IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                    }
+                    else
+                    {
+                        while (!IsEndOfTraverse && (nums[endIndex] == nums[endIndex + 1]))
+                        {
+                            ++endIndex;
+                            IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                        }
+
+
+                        swapInt = nums[endIndex];
+                        nums[endIndex] = nums[startIndex + 1];
+                        nums[startIndex + 1] = swapInt;
+                    }
+                }
+                else
+                {
+                    //traverse endIndex to find the next unique number
+                    while (!IsEndOfTraverse && (nums[endIndex] == nums[endIndex + 1]))
+                    {
+                        ++endIndex;
+                        IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                    }
+
+                    if (IsEndOfTraverse)
+                    {
+                        if (nums[startIndex] != nums[endIndex])
+                        {
+                            swapInt = nums[endIndex];
+                            nums[endIndex] = nums[startIndex + 1];
+                            nums[startIndex + 1] = swapInt;
+                        }
+                    }
+                    else
+                    {
+                        //after next unique number identified.  Loop thru the last index of this unique number
+                        ++endIndex;
+                        IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                        while (!IsEndOfTraverse && nums[endIndex] == nums[endIndex + 1])
+                        {
+                            ++endIndex;
+                            IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                        }
+                        //either we reached end of traverse, or we locate the last unique number
+                        swapInt = nums[endIndex];
+                        nums[endIndex] = nums[startIndex + 1];
+                        nums[startIndex + 1] = swapInt;
+                    }
+                }
+
+                ++startIndex;
+                ++endIndex;
+                
+            }
             return nums.Distinct().ToArray().Length;
+        }
 
-            
+        /// <summary>
+        /// Runtime: 260 ms, faster than 88.75% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 31.4 MB, less than 74.36% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int RemoveDuplicates3(int[] nums)
+        {
+            int l = 0;
+            int r = 1;
+            int n = nums.Length;
+            int i = 1;
+
+            if (n == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                while (r <= n - 1)
+                {
+                    if (nums[l] == nums[r])
+                    {
+                        r++;
+                    }
+                    else
+                    {
+                        nums[i] = nums[r];
+                        l = r;
+                        r = r + 1;
+                        i++;
+                    }
+                }
+            }
+            return i;
         }
     }
 

@@ -152,5 +152,43 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             //Assert.AreEqual(5, q.RemoveDuplicates(new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}));
 
         }
+
+        [TestMethod()]
+        public void RemoveDuplicates2Test()
+        {
+            var q = new EasyQuestions();
+            var testcase = new int[] { 1, 1, 2 };
+            var output = q.RemoveDuplicates2(testcase);
+            testcase = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+            output = q.RemoveDuplicates2(testcase);
+            testcase = new[] { 1, 1 };
+            output = q.RemoveDuplicates2(testcase);
+            testcase = new[] { 1, 2, 2 };
+            output = q.RemoveDuplicates2(testcase);
+            testcase = new[] { 1, 1, 2, 2 };
+            output = q.RemoveDuplicates2(testcase);
+            testcase = new[] { 1, 2, 2, 3 };
+            output = q.RemoveDuplicates2(testcase);
+
+        }
+
+        [TestMethod()]
+        public void RemoveDuplicates3Test()
+        {
+            var q = new EasyQuestions();
+            var testcase = new int[] { 1, 1, 2 };
+            var output = q.RemoveDuplicates3(testcase);
+            testcase = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+            output = q.RemoveDuplicates3(testcase);
+            testcase = new[] { 1, 1 };
+            output = q.RemoveDuplicates3(testcase);
+            testcase = new[] { 1, 2, 2 };
+            output = q.RemoveDuplicates3(testcase);
+            testcase = new[] { 1, 1, 2, 2 };
+            output = q.RemoveDuplicates3(testcase);
+            testcase = new[] { 1, 2, 2, 3 };
+            output = q.RemoveDuplicates3(testcase);
+
+        }
     }
 }
