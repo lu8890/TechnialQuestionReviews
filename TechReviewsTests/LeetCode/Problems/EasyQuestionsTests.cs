@@ -137,58 +137,100 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         public void RemoveDuplicatesTest()
         {
             var q = new EasyQuestions();
-            var testcase = new int[] {1, 1, 2};
-            var output = q.RemoveDuplicates(testcase);
-            testcase = new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-            output = q.RemoveDuplicates(testcase);
-            testcase = new[] {1, 1};
-            output = q.RemoveDuplicates(testcase);
-            testcase = new[] { 1, 2, 2 };
-            output = q.RemoveDuplicates(testcase);
-            testcase = new[] {1, 1, 2, 2};
-            output = q.RemoveDuplicates(testcase);
-
-            //Assert.AreEqual(2, q.RemoveDuplicates(testcase));
-            //Assert.AreEqual(5, q.RemoveDuplicates(new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4}));
-
+            var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates);
+            RunRemoveDuplicateTests(test);
         }
 
         [TestMethod()]
         public void RemoveDuplicates2Test()
         {
             var q = new EasyQuestions();
-            var testcase = new int[] { 1, 1, 2 };
-            var output = q.RemoveDuplicates2(testcase);
-            testcase = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
-            output = q.RemoveDuplicates2(testcase);
-            testcase = new[] { 1, 1 };
-            output = q.RemoveDuplicates2(testcase);
-            testcase = new[] { 1, 2, 2 };
-            output = q.RemoveDuplicates2(testcase);
-            testcase = new[] { 1, 1, 2, 2 };
-            output = q.RemoveDuplicates2(testcase);
-            testcase = new[] { 1, 2, 2, 3 };
-            output = q.RemoveDuplicates2(testcase);
-
+            var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates2);
+            RunRemoveDuplicateTests(test);
         }
 
         [TestMethod()]
         public void RemoveDuplicates3Test()
         {
             var q = new EasyQuestions();
-            var testcase = new int[] { 1, 1, 2 };
-            var output = q.RemoveDuplicates3(testcase);
-            testcase = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
-            output = q.RemoveDuplicates3(testcase);
-            testcase = new[] { 1, 1 };
-            output = q.RemoveDuplicates3(testcase);
-            testcase = new[] { 1, 2, 2 };
-            output = q.RemoveDuplicates3(testcase);
-            testcase = new[] { 1, 1, 2, 2 };
-            output = q.RemoveDuplicates3(testcase);
-            testcase = new[] { 1, 2, 2, 3 };
-            output = q.RemoveDuplicates3(testcase);
+            var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates3);
+            RunRemoveDuplicateTests(test);
+        }
 
+        [TestMethod()]
+        public void RemoveDuplicates4Test()
+        {
+            var q = new EasyQuestions();
+            var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates4);
+            RunRemoveDuplicateTests(test);
+        }
+
+        public delegate int RemoveDuplicateFuncTests(int[] input);
+        public void RunRemoveDuplicateTests(RemoveDuplicateFuncTests testDel)
+        {
+            var q = new EasyQuestions();
+            var testcase = new int[] { 1, 1, 2 };
+            var output = testDel.Invoke(testcase);
+            Assert.AreEqual(2, output);
+            ValidateArrayElements(new int[] { 1, 2 }, GenerateResultIntOutput(testcase, output));
+
+            testcase = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(5, output);
+            ValidateArrayElements(new int[] { 0, 1, 2, 3, 4 }, GenerateResultIntOutput(testcase, output));
+
+
+            testcase = new[] { 1, 1 };
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(1, output);
+            ValidateArrayElements(new int[] { 1 }, GenerateResultIntOutput(testcase, output));
+
+
+            testcase = new[] { 1, 2, 2 };
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(2, output);
+            ValidateArrayElements(new int[] { 1, 2 }, GenerateResultIntOutput(testcase, output));
+
+
+            testcase = new[] { 1, 1, 2, 2 };
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(2, output);
+            ValidateArrayElements(new int[] { 1, 2 }, GenerateResultIntOutput(testcase, output));
+
+
+            testcase = new[] { 1, 2, 2, 3 };
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(3, output);
+            ValidateArrayElements(new int[] { 1, 2, 3 }, GenerateResultIntOutput(testcase, output));
+
+            testcase = new[] { 1,1,1 };
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(1, output);
+            ValidateArrayElements(new int[] { 1 }, GenerateResultIntOutput(testcase, output));
+
+            testcase = new[] { -3, -3, -2, -1, -1, 0, 0, 0, 0, 0};
+            output = testDel.Invoke(testcase);
+            Assert.AreEqual(4, output);
+            ValidateArrayElements(new int[] { -3, -2, -1, 0 }, GenerateResultIntOutput(testcase, output));
+        }
+
+        private static void ValidateArrayElements(int[] expected, int[] actual)
+        {
+            Assert.AreEqual(expected.Length, actual.Length);
+            for(var i=0; i< expected.Length; i++)
+                Assert.AreEqual(expected[i], actual[i]);
+        }
+
+        private static int[] GenerateResultIntOutput(int[] input, int count)
+        {
+            if ((input == null) || (input.Length < count))
+                return null;
+
+            var output = new int[count];
+            for (var i = 0; i < count; i++)
+                output[i] = input[i];
+
+            return output;
         }
     }
 }

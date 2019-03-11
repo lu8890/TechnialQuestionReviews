@@ -547,7 +547,6 @@ namespace lu8890.TechReviews.LeetCode.Problems
                             IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
                         }
 
-
                         swapInt = nums[endIndex];
                         nums[endIndex] = nums[startIndex + 1];
                         nums[startIndex + 1] = swapInt;
@@ -596,6 +595,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
         }
 
         /// <summary>
+        /// Note: this solution was found in the discussion.  Used to compare the performance.
         /// Runtime: 260 ms, faster than 88.75% of C# online submissions for Remove Duplicates from Sorted Array.
         /// Memory Usage: 31.4 MB, less than 74.36% of C# online submissions for Remove Duplicates from Sorted Array.
         /// </summary>
@@ -630,6 +630,95 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 }
             }
             return i;
+        }
+
+        /// <summary>
+        /// Runtime: 268 ms, faster than 84.86% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 32.7 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
+        ///
+        /// second submit (after refactor)
+        /// Runtime: 268 ms, faster than 84.86% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// Memory Usage: 32.6 MB, less than 5.13% of C# online submissions for Remove Duplicates from Sorted Array.
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int RemoveDuplicates4(int[] nums)
+        {
+            if (nums == null)
+                return 0;
+            nums.OrderBy(x => x).ToArray();
+
+            if (nums.Length <= 2)
+                return nums.Distinct().ToArray().Length;
+
+            var startIndex = 0;
+            var endIndex = 1;
+            var isEndOfTraverse = false;
+
+            while (!isEndOfTraverse)
+            {
+                isEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                if (nums[startIndex] != nums[endIndex])
+                {
+                    if (startIndex == endIndex - 1)
+                    {
+                        isEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                    }
+                    else
+                    {
+                        FindNextArrayElement(nums, ref endIndex);
+                        ArrayElementSwap(nums, startIndex + 1, endIndex);
+                        isEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                    }
+                }
+                else
+                {
+                    //traverse endIndex to find the next unique number
+                    FindNextArrayElement(nums, ref endIndex);
+                    isEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+
+                    if (isEndOfTraverse)
+                    {
+                        if (nums[startIndex] != nums[endIndex])
+                        {
+                            ArrayElementSwap(nums, startIndex + 1, endIndex);
+                        }
+                    }
+                    else
+                    {
+                        //after next unique number identified.  Loop thru the last index of this unique number
+                        ++endIndex;
+                        FindNextArrayElement(nums, ref endIndex);
+                        ArrayElementSwap(nums, startIndex + 1, endIndex);
+                        isEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+                    }
+                }
+
+                ++startIndex;
+                ++endIndex;
+
+            }
+            return nums.Distinct().ToArray().Length;
+        }
+
+        private static void FindNextArrayElement(int[] nums, ref int endIndex)
+        {
+            var IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+            while (!IsEndOfTraverse && nums[endIndex] == nums[endIndex + 1])
+            {
+                ++endIndex;
+                IsEndOfTraverse = ReachedEndOfList(nums.Length, endIndex);
+            }
+        }
+
+        private static void ArrayElementSwap(int[] nums, int startIndex, int endIndex)
+        {
+            if ((nums.Length >= startIndex) && (nums.Length >= endIndex))
+            {
+                var tempInt = nums[startIndex];
+                nums[startIndex] = nums[endIndex];
+                nums[endIndex] = tempInt;
+            }
         }
     }
 
