@@ -63,6 +63,7 @@
     <Compile Include="InterviewQuestions\PanoptoTests.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedListTests.cs" />
     <Compile Include="LeetCode\Problems\EasyQuestionsTests.cs" />
+    <Compile Include="LeetCode\Problems\EasyQuestions2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
