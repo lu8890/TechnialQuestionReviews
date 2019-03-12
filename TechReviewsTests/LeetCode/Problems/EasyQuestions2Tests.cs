@@ -226,5 +226,12 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             result = testFunc.Invoke(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 });
             Assert.AreEqual(1, result.LastOrDefault());
         }
+
+        [TestMethod]
+        public void AddBinaryTest()
+        {
+            var p = new EasyQuestions();
+            var result = p.AddBinary("1", "11");
+        }
     }
 }

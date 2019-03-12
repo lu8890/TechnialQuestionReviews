@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace lu8890.TechReviews.LeetCode.Problems
 {
@@ -373,6 +374,108 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
                 return output;
             }
+        }
+
+
+        public string AddBinary(string a, string b)
+        {
+            if (string.IsNullOrWhiteSpace(a))
+                return b;
+            else if (string.IsNullOrWhiteSpace(b))
+                return a;
+
+            var length = (a.Length > b.Length)
+                ? a.Length
+                : b.Length;
+
+            StringBuilder resultBuilder = new StringBuilder();
+
+            
+            var arrayA = a.ToCharArray();
+            var arrayB = b.ToCharArray();
+            var traverseIndexA = arrayA.Length - 1;
+            var traverseIndexB = arrayB.Length - 1;
+            var carryOver = false;
+            var sum = 0;
+
+            while(length > 0)
+            {
+                if( traverseIndexA > 0 && traverseIndexB > 0)
+                {
+                    sum = (int)arrayA[traverseIndexA] + (int)arrayB[traverseIndexB];
+                    if (carryOver)
+                    {
+                        ++sum;
+                        carryOver = false;
+                    }
+
+                    if (sum == 3)
+                    {
+                        resultBuilder.Insert(0, '1');
+                        carryOver = true;
+                    }
+                    else if(sum == 2)
+                    {
+                        resultBuilder.Insert(0, '0');
+                        carryOver = true;
+                    }
+                    else
+                    {
+                        resultBuilder.Insert(0, '1');
+                        carryOver = false;
+                    }
+                }
+                else if (traverseIndexA > 0)
+                {
+                    sum = (int)arrayA[traverseIndexA];
+                    if (carryOver)
+                    {
+                        ++sum;
+                        carryOver = false;
+                    }
+
+                    if(sum == 1)
+                    {
+                        resultBuilder.Insert(0, '1');
+                        carryOver = false;
+                    }
+                    else if (sum == 2)
+                    {
+                        resultBuilder.Insert(0, '0');
+                        carryOver = true;
+                    }
+                    
+                }
+                else if (traverseIndexB > 0)
+                {
+                    sum = (int)arrayB[traverseIndexB];
+                    if (carryOver)
+                    {
+                        ++sum;
+                        carryOver = false;
+                    }
+
+                    if (sum == 1)
+                    {
+                        resultBuilder.Insert(0, '1');
+                        carryOver = false;
+                    }
+                    else if (sum == 2)
+                    {
+                        resultBuilder.Insert(0, '0');
+                        carryOver = true;
+                    }
+                }
+
+                --traverseIndexA;
+                --traverseIndexB;
+                --length;
+                sum = 0;
+            }
+            if (carryOver)
+                resultBuilder.Insert(0, '1');
+
+            return resultBuilder.ToString();
         }
     }
 }
