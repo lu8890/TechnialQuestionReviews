@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.LeetCode.Problems;
 
@@ -152,6 +153,78 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Assert.AreEqual(5, testFunc.Invoke(new int[] { -1, 3, 2 }));
             Assert.AreEqual(6, testFunc.Invoke(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }));
 
+        }
+
+        [TestMethod]
+        public void LengthOfLastWordTest()
+        {
+            var testCase = new EasyQuestions();
+            Assert.AreEqual(5, testCase.LengthOfLastWord("Hello World"));
+            Assert.AreEqual(0, testCase.LengthOfLastWord(""));
+            Assert.AreEqual(0, testCase.LengthOfLastWord(" "));
+            Assert.AreEqual(6, testCase.LengthOfLastWord("How are you doing?"));
+            Assert.AreEqual(6, testCase.LengthOfLastWord("How are you doing? "));
+        }
+
+        [TestMethod]
+        public void PlusOneTest()
+        {
+            var p = new EasyQuestions();
+            var testFunc = new PlusOneDel(p.PlusOne);
+            PlusOneTestDriver(testFunc);
+        }
+
+        [TestMethod]
+        public void PlusOneTest2()
+        {
+            var p = new EasyQuestions();
+            var testFunc = new PlusOneDel(p.PlusOne2);
+            PlusOneTestDriver(testFunc);
+        }
+
+        public delegate int[] PlusOneDel(int[] input);
+
+        private static void PlusOneTestDriver(PlusOneDel testFunc)
+        {
+            
+            var result = testFunc.Invoke((new int[] { 1, 2, 3 }));
+            Assert.AreEqual(4, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 4, 2, 3, 1 });
+            Assert.AreEqual(2, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 4, 2, 3, 9 });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 4, 2, 3, 0 });
+            Assert.AreEqual(1, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 4, 2, 3, 5 });
+            Assert.AreEqual(6, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 1 });
+            Assert.AreEqual(2, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 9 });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 9, 9 });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 1,9 });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 1,1, 9 });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 1,9,9 });
+            Assert.AreEqual(0, result.LastOrDefault());
+
+            result = testFunc.Invoke(new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 });
+            Assert.AreEqual(1, result.LastOrDefault());
         }
     }
 }

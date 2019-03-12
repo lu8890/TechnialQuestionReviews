@@ -257,5 +257,122 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             return nums.Max(x => x);
         }
+
+        /// <summary>
+        /// https://leetcode.com/problems/length-of-last-word/
+        /// Runtime: 76 ms, faster than 91.70% of C# online submissions for Length of Last Word.
+        /// Memory Usage: 20.3 MB, less than 21.28% of C# online submissions for Length of Last Word.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int LengthOfLastWord(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s.Trim()))
+                return 0;
+
+            var wordTokens = s.Trim().Split(' ');
+            if (wordTokens.Length == 0)
+                return 0;
+            else
+                return wordTokens.LastOrDefault().Length;
+        }
+
+        /// <summary>
+        /// https://leetcode.com/problems/plus-one/
+        /// this solution generally working until int of int[] is becoming bigger than int.Max
+        /// it breaks the test case with input [9,8,7,6,5,4,3,2,1,0] with System.OverflowException
+        /// </summary>
+        /// <param name="digits"></param>
+        /// <returns></returns>
+        public int[] PlusOne(int[] digits)
+        {
+            if((digits == null) || (digits.Length == 0))
+                return new int[]{};
+
+            var input = string.Join("", digits);
+            int output;
+            try
+            {
+                output = Convert.ToInt32(input);
+            }
+            catch (OverflowException e)
+            {
+                return PlusOne2(digits);
+            }
+            
+            ++output;
+            var outp = output.ToString()
+                .ToCharArray()
+                .Select(x => Char.GetNumericValue(x))
+                .Select(y => (int) y)
+                .ToArray();
+
+            return outp;
+        }
+
+        /// <summary>
+        /// Runtime: 280 ms, faster than 72.58% of C# online submissions for Plus One.
+        /// Memory Usage: 28.3 MB, less than 5.48% of C# online submissions for Plus One.
+        /// </summary>
+        /// <param name="digits"></param>
+        /// <returns></returns>
+        public int[] PlusOne2(int[] digits)
+        {
+            if ((digits == null) || (digits.Length == 0))
+                return new int[] { };
+
+            var willOverflow = false;
+
+            for (var i = 0; i < digits.Length; i++)
+            {
+                if (digits[i] != 9)
+                {
+                    willOverflow = false;
+                    break;
+                }
+
+                willOverflow = true;
+            }
+
+            int[] output;
+
+            if (willOverflow)
+            {
+                output = new int[digits.Length + 1];
+                output[0] = 1;
+                for (int j = 1; j < output.Length; j++)
+                    output[j] = 0;
+
+                return output;
+            }
+
+            output = digits;
+            if (digits[digits.Length - 1] < 9)
+            {
+                ++digits[digits.Length - 1];
+
+                return output;
+            }
+            else
+            {
+                output[digits.Length - 1] = 0;
+                int traverse = digits.Length - 2;
+                while (traverse >= 0)
+                {
+                    if (output[traverse] != 9)
+                    {
+                        ++output[traverse];
+                        break;
+                    }
+                    else
+                    {
+                        output[traverse] = 0;
+                        --traverse;
+                    }
+                }
+
+                return output;
+            }
+        }
     }
 }
