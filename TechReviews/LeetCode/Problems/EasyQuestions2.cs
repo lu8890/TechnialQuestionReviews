@@ -376,7 +376,14 @@ namespace lu8890.TechReviews.LeetCode.Problems
             }
         }
 
-
+        /// <summary>
+        /// https://leetcode.com/problems/add-binary/
+        /// Runtime: 88 ms, faster than 92.49% of C# online submissions for Add Binary.
+        /// Memory Usage: 22.6 MB, less than 89.39% of C# online submissions for Add Binary.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public string AddBinary(string a, string b)
         {
             if (string.IsNullOrWhiteSpace(a))
@@ -400,9 +407,9 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             while(length > 0)
             {
-                if( traverseIndexA > 0 && traverseIndexB > 0)
+                if( traverseIndexA >= 0 && traverseIndexB >= 0)
                 {
-                    sum = (int)arrayA[traverseIndexA] + (int)arrayB[traverseIndexB];
+                    sum = (int)Char.GetNumericValue(arrayA[traverseIndexA]) + (int)Char.GetNumericValue(arrayB[traverseIndexB]);
                     if (carryOver)
                     {
                         ++sum;
@@ -419,22 +426,32 @@ namespace lu8890.TechReviews.LeetCode.Problems
                         resultBuilder.Insert(0, '0');
                         carryOver = true;
                     }
-                    else
+                    else if(sum == 1)
                     {
                         resultBuilder.Insert(0, '1');
                         carryOver = false;
                     }
+                    else if (sum == 0)
+                    {
+                        resultBuilder.Insert(0, '0');
+                        carryOver = false;
+                    }
                 }
-                else if (traverseIndexA > 0)
+                else if (traverseIndexA >= 0)
                 {
-                    sum = (int)arrayA[traverseIndexA];
+                    sum = (int)Char.GetNumericValue(arrayA[traverseIndexA]);
                     if (carryOver)
                     {
                         ++sum;
                         carryOver = false;
                     }
 
-                    if(sum == 1)
+                    if (sum == 0)
+                    {
+                        resultBuilder.Insert(0, '0');
+                        carryOver = false;
+                    }
+                    else if (sum == 1)
                     {
                         resultBuilder.Insert(0, '1');
                         carryOver = false;
@@ -446,16 +463,21 @@ namespace lu8890.TechReviews.LeetCode.Problems
                     }
                     
                 }
-                else if (traverseIndexB > 0)
+                else if (traverseIndexB >= 0)
                 {
-                    sum = (int)arrayB[traverseIndexB];
+                    sum = (int)Char.GetNumericValue(arrayB[traverseIndexB]);
                     if (carryOver)
                     {
                         ++sum;
                         carryOver = false;
                     }
 
-                    if (sum == 1)
+                    if (sum == 0)
+                    {
+                        resultBuilder.Insert(0, '0');
+                        carryOver = false;
+                    }
+                    else if (sum == 1)
                     {
                         resultBuilder.Insert(0, '1');
                         carryOver = false;
@@ -477,5 +499,121 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             return resultBuilder.ToString();
         }
+
+        /// <summary>
+        /// https://leetcode.com/problems/sqrtx/
+        /// Runtime: 40 ms, faster than 100.00% of C# online submissions for Sqrt(x).
+        /// Memory Usage: 13 MB, less than 52.46% of C# online submissions for Sqrt(x).
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public int MySqrt(int x)
+        {
+            if ((x == 0) || (x == 1))
+                return x;
+
+            return (int)Math.Sqrt(x);
+        }
+        
+        /// <summary>
+        /// got this solution from the discussion
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public int MySqrt2(int x)
+        {
+            if (x == 0)
+                return 0;
+            int left = 1, right = Int32.MaxValue;
+            while (true)
+            {
+                int mid = left + (right - left) / 2;
+                if (mid > x / mid)
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    if (mid + 1 > x / (mid + 1))
+                        return mid;
+                    left = mid + 1;
+                }
+            }
+        }
+
+        /// <summary>
+        /// got this solution from the discussion
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public int MySqrt3(int x)
+        {
+            int tmp = 1;
+            while (tmp <= x / tmp)
+            {
+                tmp++;
+            }
+            return tmp - 1;
+        }
+
+        /// <summary>
+        /// got this solution from the discussion
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public int MySqrt4(int x)
+        {
+            long l = 1;
+            long r = x;
+            while (l < r)
+            {
+                long mid = l + (r - l) / 2;
+                if (mid == x / mid)
+                {
+                    return (int)mid;
+                }
+                else if (mid > x / mid)
+                {
+                    r = mid - 1;
+                }
+                else
+                    l = mid + 1;
+            }
+            return l > x / l ? (int)l - 1 : (int)l;
+        }
+
+        /// <summary>
+        /// got this solution from the discussion
+        /// this algorithm was written in C, which is having issue in C# with following statement:
+        ///     int mid = start + (end - mid) / 2;
+        /// did not know you can declare a variable and assign its value to it.... wondering how does it work..
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        //public int MySqrt5(int x)
+        //{
+        //    if (x == 0 || x == 1)
+        //    {
+        //        return x;
+        //    }
+
+        //    int start = 1;
+        //    int end = x / 2;
+        //    // standard binary search template
+        //    while (start + 1 < end)
+        //    {
+        //        int mid = start + (end - mid) / 2;
+        //        // why not mid * mid <= x? because it may cause overflow when mid is very large
+        //        if (mid <= x / mid)
+        //        {
+        //            start = mid;
+        //        }
+        //        else
+        //        {
+        //            end = mid - 1;
+        //        }
+        //    }
+        //    return end <= x / end ? end : start;
+        //}
     }
 }

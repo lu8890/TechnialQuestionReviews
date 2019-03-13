@@ -231,7 +231,52 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         public void AddBinaryTest()
         {
             var p = new EasyQuestions();
-            var result = p.AddBinary("1", "11");
+            Assert.AreEqual("100", p.AddBinary("1", "11"));
+            Assert.AreEqual("10101", p.AddBinary("1010", "1011"));
+            Assert.AreEqual("110", p.AddBinary("11", "11"));
+            Assert.AreEqual("11", p.AddBinary("11", ""));
+            Assert.AreEqual("11", p.AddBinary("", "11"));
+            Assert.AreEqual("0", p.AddBinary("0", "0"));
+            Assert.AreEqual("10", p.AddBinary("1", "1"));
+        }
+
+        [TestMethod]
+        public void MySqrtTest()
+        {
+            var p = new EasyQuestions();
+            MySqrtDel testFunc = new MySqrtDel(p.MySqrt);
+        }
+
+        [TestMethod]
+        public void MySqrtTest2()
+        {
+            var p = new EasyQuestions();
+            MySqrtDel testFunc = new MySqrtDel(p.MySqrt2);
+        }
+
+        [TestMethod]
+        public void MySqrtTest3()
+        {
+            var p = new EasyQuestions();
+            MySqrtDel testFunc = new MySqrtDel(p.MySqrt3);
+        }
+
+        [TestMethod]
+        public void MySqrtTest4()
+        {
+            var p = new EasyQuestions();
+            MySqrtDel testFunc = new MySqrtDel(p.MySqrt4);
+        }
+
+
+
+        public delegate int MySqrtDel(int x);
+        private static void RunMySqrtTest(MySqrtDel testFunc)
+        {
+            Assert.AreEqual(0, testFunc.Invoke(0));
+            Assert.AreEqual(1, testFunc.Invoke(1));
+            Assert.AreEqual(2, testFunc.Invoke(4));
+            Assert.AreEqual(2, testFunc.Invoke(8));
         }
     }
 }
