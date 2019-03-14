@@ -120,7 +120,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
 
         }
 
-        private static string GetLinkedListItems(ListNode input)
+        internal static string GetLinkedListItems(ListNode input)
         {
             var outputBuilder = new StringBuilder();
 

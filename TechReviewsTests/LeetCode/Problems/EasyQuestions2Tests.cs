@@ -268,8 +268,6 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             MySqrtDel testFunc = new MySqrtDel(p.MySqrt4);
         }
 
-
-
         public delegate int MySqrtDel(int x);
         private static void RunMySqrtTest(MySqrtDel testFunc)
         {
@@ -277,6 +275,134 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Assert.AreEqual(1, testFunc.Invoke(1));
             Assert.AreEqual(2, testFunc.Invoke(4));
             Assert.AreEqual(2, testFunc.Invoke(8));
+        }
+
+        [TestMethod]
+        public void ClimbStairsTest()
+        {
+            var testp = new EasyQuestions();
+            Assert.AreEqual(1,testp.ClimbStairs(1));
+            Assert.AreEqual(2, testp.ClimbStairs(2));
+            Assert.AreEqual(3, testp.ClimbStairs(3));
+            Assert.AreEqual(5, testp.ClimbStairs(4));
+            Assert.AreEqual(8, testp.ClimbStairs(5));
+            Assert.AreEqual(13, testp.ClimbStairs(6));
+            Assert.AreEqual(21, testp.ClimbStairs(7));
+            Assert.AreEqual(34, testp.ClimbStairs(8));
+            Assert.AreEqual(55, testp.ClimbStairs(9));
+            Assert.AreEqual(89, testp.ClimbStairs(10));
+        }
+
+        [TestMethod]
+        public void DeleteDuplicatesTest()
+        {
+            var testp = new EasyQuestions();
+            var testcase = new ListNode(1);
+            var result = testp.DeleteDuplicates(null);
+            Assert.AreEqual(null, result);
+
+            testcase = new ListNode(1){next = new ListNode(1)};
+            testcase.next.next = new ListNode(2);
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1 2", EasyQuestionsTests.GetLinkedListItems(result));
+
+            testcase = new ListNode(1) { next = new ListNode(1) };
+            testcase.next.next = new ListNode(2);
+            testcase.next.next.next = new ListNode(3);
+            testcase.next.next.next.next = new ListNode(3);
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1 2 3", EasyQuestionsTests.GetLinkedListItems(result));
+
+            testcase = new ListNode(1) { next = new ListNode(2) };
+            testcase.next.next = new ListNode(3);
+            testcase.next.next.next = new ListNode(1);
+            testcase.next.next.next.next = new ListNode(2);
+            testcase.next.next.next.next.next = new ListNode(3);
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1 2 3 1 2 3", EasyQuestionsTests.GetLinkedListItems(result));
+
+            testcase = new ListNode(1) { next = new ListNode(2) };
+            testcase.next.next = new ListNode(2);
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1 2", EasyQuestionsTests.GetLinkedListItems(result));
+
+            testcase = new ListNode(1) { next = new ListNode(1) };
+            testcase.next.next = new ListNode(2);
+            testcase.next.next.next = new ListNode(3);
+            testcase.next.next.next.next = new ListNode(3);
+            testcase.next.next.next.next.next = new ListNode(4);
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1 2 3 4", EasyQuestionsTests.GetLinkedListItems(result));
+
+            testcase = new ListNode(1) { next = new ListNode(1) };
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1", EasyQuestionsTests.GetLinkedListItems(result));
+
+            testcase = new ListNode(1) { next = new ListNode(1) };
+            testcase.next.next = new ListNode(1);
+            result = testp.DeleteDuplicates(testcase);
+            Assert.AreEqual("1", EasyQuestionsTests.GetLinkedListItems(result));
+        }
+
+        [TestMethod]
+        public void MergeTest()
+        {
+            var testP = new EasyQuestions();
+            var nums1 = new int[] {1, 2, 3, 0, 0, 0};
+            var m = 3;
+            var nums2 = new int[] {2, 5, 6};
+            var n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("1 2 2 3 5 6", string.Join(" ", nums1));
+
+            nums1 = new int[] { 1, 2, 3, 0, 0, 0 };
+            m = 3;
+            nums2 = new int[] { 2, 5 };
+            n = 2;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("1 2 2 3 5 0", string.Join(" ", nums1));
+
+            nums1 = new int[] { 6, 7, 8, 0, 0, 0 };
+            m = 3;
+            nums2 = new int[] { 2, 3, 5 };
+            n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("2 3 5 6 7 8", string.Join(" ", nums1));
+
+            nums1 = new int[] { 6, 7, 8, 0, 0, 0 };
+            m = 3;
+            nums2 = new int[] { 9, 10, 11};
+            n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("6 7 8 9 10 11", string.Join(" ", nums1));
+
+            nums1 = new int[] { 6, 7, 12, 0, 0, 0 };
+            m = 3;
+            nums2 = new int[] { 9, 10, 11 };
+            n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("6 7 9 10 11 12", string.Join(" ", nums1));
+
+            nums1 = new int[] { 6, 7, 12, 0, 0, 0 };
+            m = 3;
+            nums2 = new int[] { 8, 8, 8 };
+            n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("6 7 8 8 8 12", string.Join(" ", nums1));
+
+            nums1 = new int[] { 8, 8, 8, 0, 0, 0 };
+            m = 3;
+            nums2 = new int[] { 9, 10, 11 };
+            n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("8 8 8 9 10 11", string.Join(" ", nums1));
+
+            nums1 = new int[] { -1, 0, 0, 3, 3, 3, 0, 0, 0 };
+            m = 6;
+            nums2 = new int[] { 1, 2, 2 };
+            n = 3;
+            testP.Merge(nums1, m, nums2, n);
+            Assert.AreEqual("-1 0 0 1 2 2 3 3 3", string.Join(" ", nums1));
         }
     }
 }

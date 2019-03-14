@@ -394,7 +394,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             {
                 if (inputList.val < min)
                     return false;
-
+                min = inputList.val;
                 inputList = inputList.next;
             }
 

@@ -92,7 +92,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 return nums.Length - nums.SkipWhile(x => x != target).Count();
             }
             else
-            { 
+            {
                 return nums.Length - nums.SkipWhile(x => x < target).Count();
             }
         }
@@ -146,7 +146,8 @@ namespace lu8890.TechReviews.LeetCode.Problems
                     key = input[i];
                 }
             }
-            if(!string.IsNullOrWhiteSpace(token.ToString()))
+
+            if (!string.IsNullOrWhiteSpace(token.ToString()))
                 map.Add(token);
 
             var resultBuilder = new StringBuilder();
@@ -250,7 +251,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             if (nums.Length == 1)
                 return nums[0];
 
-            for (var i=1; i < nums.Length; i++)
+            for (var i = 1; i < nums.Length; i++)
             {
                 if (nums[i - 1] > 0)
                     nums[i] += nums[i - 1];
@@ -287,8 +288,8 @@ namespace lu8890.TechReviews.LeetCode.Problems
         /// <returns></returns>
         public int[] PlusOne(int[] digits)
         {
-            if((digits == null) || (digits.Length == 0))
-                return new int[]{};
+            if ((digits == null) || (digits.Length == 0))
+                return new int[] { };
 
             var input = string.Join("", digits);
             int output;
@@ -300,7 +301,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             {
                 return PlusOne2(digits);
             }
-            
+
             ++output;
             var outp = output.ToString()
                 .ToCharArray()
@@ -397,7 +398,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             StringBuilder resultBuilder = new StringBuilder();
 
-            
+
             var arrayA = a.ToCharArray();
             var arrayB = b.ToCharArray();
             var traverseIndexA = arrayA.Length - 1;
@@ -405,11 +406,12 @@ namespace lu8890.TechReviews.LeetCode.Problems
             var carryOver = false;
             var sum = 0;
 
-            while(length > 0)
+            while (length > 0)
             {
-                if( traverseIndexA >= 0 && traverseIndexB >= 0)
+                if (traverseIndexA >= 0 && traverseIndexB >= 0)
                 {
-                    sum = (int)Char.GetNumericValue(arrayA[traverseIndexA]) + (int)Char.GetNumericValue(arrayB[traverseIndexB]);
+                    sum = (int) Char.GetNumericValue(arrayA[traverseIndexA]) +
+                          (int) Char.GetNumericValue(arrayB[traverseIndexB]);
                     if (carryOver)
                     {
                         ++sum;
@@ -421,12 +423,12 @@ namespace lu8890.TechReviews.LeetCode.Problems
                         resultBuilder.Insert(0, '1');
                         carryOver = true;
                     }
-                    else if(sum == 2)
+                    else if (sum == 2)
                     {
                         resultBuilder.Insert(0, '0');
                         carryOver = true;
                     }
-                    else if(sum == 1)
+                    else if (sum == 1)
                     {
                         resultBuilder.Insert(0, '1');
                         carryOver = false;
@@ -439,7 +441,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 }
                 else if (traverseIndexA >= 0)
                 {
-                    sum = (int)Char.GetNumericValue(arrayA[traverseIndexA]);
+                    sum = (int) Char.GetNumericValue(arrayA[traverseIndexA]);
                     if (carryOver)
                     {
                         ++sum;
@@ -461,11 +463,11 @@ namespace lu8890.TechReviews.LeetCode.Problems
                         resultBuilder.Insert(0, '0');
                         carryOver = true;
                     }
-                    
+
                 }
                 else if (traverseIndexB >= 0)
                 {
-                    sum = (int)Char.GetNumericValue(arrayB[traverseIndexB]);
+                    sum = (int) Char.GetNumericValue(arrayB[traverseIndexB]);
                     if (carryOver)
                     {
                         ++sum;
@@ -494,6 +496,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 --length;
                 sum = 0;
             }
+
             if (carryOver)
                 resultBuilder.Insert(0, '1');
 
@@ -512,9 +515,9 @@ namespace lu8890.TechReviews.LeetCode.Problems
             if ((x == 0) || (x == 1))
                 return x;
 
-            return (int)Math.Sqrt(x);
+            return (int) Math.Sqrt(x);
         }
-        
+
         /// <summary>
         /// got this solution from the discussion
         /// </summary>
@@ -553,6 +556,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             {
                 tmp++;
             }
+
             return tmp - 1;
         }
 
@@ -570,7 +574,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 long mid = l + (r - l) / 2;
                 if (mid == x / mid)
                 {
-                    return (int)mid;
+                    return (int) mid;
                 }
                 else if (mid > x / mid)
                 {
@@ -579,7 +583,8 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 else
                     l = mid + 1;
             }
-            return l > x / l ? (int)l - 1 : (int)l;
+
+            return l > x / l ? (int) l - 1 : (int) l;
         }
 
         /// <summary>
@@ -615,5 +620,139 @@ namespace lu8890.TechReviews.LeetCode.Problems
         //    }
         //    return end <= x / end ? end : start;
         //}
+
+
+        ///https://leetcode.com/problems/climbing-stairs/submissions/
+        ///Runtime: 36 ms, faster than 100.00% of C# online submissions for Climbing Stairs.
+        ///Memory Usage: 12.9 MB, less than 10.78% of C# online submissions for Climbing Stairs.
+        /// 
+        public int ClimbStairs(int n)
+        {
+            if (n == 0 || n == 1 || n == 2)
+                return n;
+
+            var pos1 = 1;
+            var pos2 = 2;
+            for (var i = 3; i <= n; i++)
+            {
+                pos2 = pos2 + pos1;
+                pos1 = pos2 - pos1;
+            }
+
+            return pos2;
+        }
+
+        /// <summary>
+        /// https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+        /// Runtime: 92 ms, faster than 100.00% of C# online submissions for Remove Duplicates from Sorted List.
+        /// Memory Usage: 23.9 MB, less than 16.28% of C# online submissions for Remove Duplicates from Sorted List.
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public ListNode DeleteDuplicates(ListNode head)
+        {
+            if ((head == null) || (head.next == null))
+                return head;
+
+            if (!IsSortedList(head))
+                return head;
+
+            var travers = head;
+            while (travers.next != null)
+            {
+                if (travers.val == travers.next.val)
+                {
+                    travers.next = travers.next.next;
+                }
+                else
+                    travers = travers.next;
+            }
+
+            return head;
+        }
+
+        /// <summary>
+        /// https://leetcode.com/problems/merge-sorted-array/
+        /// Runtime: 268 ms, faster than 80.39% of C# online submissions for Merge Sorted Array.
+        /// Memory Usage: 28.5 MB, less than 93.44% of C# online submissions for Merge Sorted Array.
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="m"></param>
+        /// <param name="nums2"></param>
+        /// <param name="n"></param>
+        public void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            var nums1Index = 0;
+            var nums2Index = 0;
+
+            while ((nums2Index < n) && (n <= nums2.Length))
+            {
+                while ((nums1Index < nums1.Length))
+                {
+                    if ((nums2[nums2Index] > nums1[nums1Index]) && (nums1Index < m))
+                        ++nums1Index;
+                    else
+                    {
+                        var end1Index = nums1.Length - 1;
+                        while (end1Index != nums1Index)
+                        {
+                            nums1[end1Index] = nums1[end1Index - 1];
+                            --end1Index;
+                        }
+
+                        nums1[nums1Index] = nums2[nums2Index];
+                        ++m;
+                        break;
+                    }
+                }
+
+                ++nums2Index;
+            }
+        }
+
+        /// <summary>
+        /// This logic works, execpt nums1 = results.ToArray() would assign a new memory for nums1,
+        /// hence, calling function will not get the modified results.
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="m"></param>
+        /// <param name="nums2"></param>
+        /// <param name="n"></param>
+        public void Merge2(int[] nums1, int m, int[] nums2, int n)
+        {
+            int[] output = new int[nums1.Length];
+
+            List<int> result = new List<int>();
+            var nums1Index = 0;
+            var nums2Index = 0;
+
+            while (nums1Index < m && nums2Index < n)
+            {
+                if ((nums1[nums1Index] < nums2[nums2Index]) && (nums1[nums1Index] != 0))
+                {
+                    result.Add(nums1[nums1Index]);
+                    ++nums1Index;
+                }
+                else
+                {
+                    result.Add(nums2[nums2Index]);
+                    ++nums2Index;
+                }
+            }
+
+            while (nums1Index < m)
+            {
+                result.Add(nums1[nums1Index]);
+                ++nums1Index;
+            }
+
+            while (nums2Index < n)
+            {
+                result.Add(nums2[nums2Index]);
+                ++nums2Index;
+            }
+
+            nums1 = result.ToArray();
+        }
     }
 }
