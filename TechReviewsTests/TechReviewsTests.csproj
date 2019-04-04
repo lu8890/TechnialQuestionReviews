@@ -62,8 +62,10 @@
     <Compile Include="DataStructures\TreeTests.cs" />
     <Compile Include="InterviewQuestions\PanoptoTests.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedListTests.cs" />
+    <Compile Include="LeetCode\Competition\WeeklyContest130Tests.cs" />
     <Compile Include="LeetCode\Problems\EasyQuestionsTests.cs" />
     <Compile Include="LeetCode\Problems\EasyQuestions2Tests.cs" />
+    <Compile Include="LeetCode\Problems\MediumQuestionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +77,7 @@
       <Name>TechReviews</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LeetCode\Competition\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
