@@ -405,5 +405,21 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Assert.AreEqual("-1 0 0 1 2 2 3 3 3", string.Join(" ", nums1));
         }
 
+        [TestMethod]
+        public void IsSameTreeTest()
+        {
+            var testClass = new EasyQuestions();
+            var input1 = new TreeNode(1) {left = new TreeNode(2), right = new TreeNode(3)};
+            var input2 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3) };
+            Assert.AreEqual(true, testClass.IsSameTree(input1, input2), "testcase 01 failed");
+
+            input1 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3) };
+            input2 = new TreeNode(1) { left = new TreeNode(3), right = new TreeNode(2) };
+            Assert.AreEqual(false, testClass.IsSameTree(input1, input2), "testcase 02 failed");
+
+            input1 = new TreeNode(1) { right = new TreeNode(3) };
+            input2 = new TreeNode(1) { left = new TreeNode(3) };
+            Assert.AreEqual(false, testClass.IsSameTree(input1, input2), "testcase 03 failed");
+        }
     }
 }
