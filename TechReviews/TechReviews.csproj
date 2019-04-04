@@ -50,8 +50,10 @@
     <Compile Include="InterviewQuestions\Panopto.cs" />
     <Compile Include="LeetCode\Competition\WeeklyContest127.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedList.cs" />
+    <Compile Include="LeetCode\Competition\WeeklyContest130.cs" />
     <Compile Include="LeetCode\Problems\EasyQuestions.cs" />
     <Compile Include="LeetCode\Problems\EasyQuestions2.cs" />
+    <Compile Include="LeetCode\Problems\MediumQuestions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
