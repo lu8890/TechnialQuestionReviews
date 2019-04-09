@@ -48,5 +48,36 @@ namespace lu8890.TechReviewsTests.InterviewQuestions
             result = testClass.IsACirtularLinkedList(testNode);
             Assert.AreEqual(true, result);
         }
+
+        [TestMethod]
+        public void RemoveFirstNodeByValueTest()
+        {
+            var testClass = new MS();
+            var result = testClass.RemoveFirstNodeByValue(10, null);
+            Assert.AreEqual(null, result);
+
+            var testNode = new Node<int>(0);
+            result = testClass.RemoveFirstNodeByValue(1, testNode);
+            Assert.AreEqual("0", result.Print(result));
+
+            result = testClass.RemoveFirstNodeByValue(0, testNode);
+            Assert.AreEqual(null, result);
+
+            testNode = new Node<int>(0){ NextNode = new Node<int>(0)};
+            result = testClass.RemoveFirstNodeByValue(0, testNode);
+            Assert.AreEqual("0", result.Print(result));
+
+            testNode = new Node<int>(0) { NextNode = new Node<int>(1) };
+            result = testClass.RemoveFirstNodeByValue(0, testNode);
+            Assert.AreEqual("1", result.Print(result));
+
+            testNode = new Node<int>(0) { NextNode = new Node<int>(1) {NextNode = new Node<int>(2)} };
+            result = testClass.RemoveFirstNodeByValue(1, testNode);
+            Assert.AreEqual("0 2", result.Print(result));
+
+            testNode = new Node<int>(0) { NextNode = new Node<int>(1) { NextNode = new Node<int>(2) } };
+            result = testClass.RemoveFirstNodeByValue(2, testNode);
+            Assert.AreEqual("0 1", result.Print(result));
+        }
     }
 }

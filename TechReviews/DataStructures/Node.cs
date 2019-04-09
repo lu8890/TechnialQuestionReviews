@@ -1,4 +1,6 @@
-﻿namespace lu8890.TechReviews.DataStructures
+﻿using System.Text;
+
+namespace lu8890.TechReviews.DataStructures
 {
     public class Node<T>
     {
@@ -13,6 +15,18 @@
 
         public Node()
         {
+        }
+
+        public string Print(Node<T> headNode)
+        {
+            var nodeValueBuilder = new StringBuilder();
+            while (headNode != null)
+            {
+                nodeValueBuilder.Append(headNode.NodeValue + " ");
+                headNode = headNode.NextNode;
+            }
+
+            return nodeValueBuilder.ToString().Trim();
         }
     }
 }

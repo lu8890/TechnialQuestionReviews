@@ -33,5 +33,39 @@ namespace lu8890.TechReviews.InterviewQuestions
 
             return false;
         }
+
+        /// <summary>
+        /// Remove first occurred node with a specified node value
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="inputLinkedList"></param>
+        public Node<int> RemoveFirstNodeByValue(int val, Node<int> inputLinkedList)
+        {
+            var traverseNode = inputLinkedList;
+
+            if (inputLinkedList != null)
+            {
+                if (inputLinkedList.NodeValue == val)
+                    return traverseNode = traverseNode.NextNode;
+                else
+                {
+                    while (traverseNode.NextNode != null)
+                    {
+                        if (traverseNode.NextNode.NodeValue == val)
+                        {
+                            traverseNode.NextNode = traverseNode.NextNode.NextNode;
+                            GC.Collect();
+                            break;
+                        }
+                        else
+                        {
+                            traverseNode = traverseNode.NextNode;
+                        }
+                    }
+                }
+            }
+
+            return inputLinkedList;
+        }
     }
 }
