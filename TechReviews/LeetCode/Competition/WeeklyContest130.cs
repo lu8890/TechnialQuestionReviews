@@ -124,6 +124,12 @@ namespace lu8890.TechReviews.LeetCode.Competition
             return result;
         }
 
+        /// <summary>
+        /// Runtime: 268 ms, faster than 40.00% of C# online submissions for Binary Prefix Divisible By 5.
+        /// Memory Usage: 33 MB, less than 100.00% of C# online submissions for Binary Prefix Divisible By 5.
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public IList<bool> PrefixesDivBy5_4(int[] A)
         {
             Console.WriteLine(string.Join(" ", A));
@@ -147,6 +153,12 @@ namespace lu8890.TechReviews.LeetCode.Competition
             return result;
         }
 
+        /// <summary>
+        /// Runtime: 264 ms, faster than 77.14% of C# online submissions for Binary Prefix Divisible By 5.
+        /// Memory Usage: 33 MB, less than 100.00% of C# online submissions for Binary Prefix Divisible By 5.
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public IList<bool> PrefixesDivBy5_5(int[] A)
         {
             Console.WriteLine(string.Join(" ", A));

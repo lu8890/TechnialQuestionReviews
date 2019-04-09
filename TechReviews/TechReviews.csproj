@@ -47,6 +47,8 @@
     <Compile Include="DataStructures\Stack.cs" />
     <Compile Include="DataStructures\Tree.cs" />
     <Compile Include="DataStructures\TreeNode.cs" />
+    <Compile Include="InterviewQuestions\Amazon.cs" />
+    <Compile Include="InterviewQuestions\Microsoft.cs" />
     <Compile Include="InterviewQuestions\Panopto.cs" />
     <Compile Include="LeetCode\Competition\WeeklyContest127.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedList.cs" />
