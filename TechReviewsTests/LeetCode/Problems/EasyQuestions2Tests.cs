@@ -1,8 +1,12 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.LeetCode.Problems;
+using lu8890.TechReviews.DataStructures;
+using TreeNode = lu8890.TechReviews.LeetCode.Problems.TreeNode;
+using TreeNode2 = lu8890.TechReviews.DataStructures.TreeNode;
 
 
 namespace lu8890.TechReviewsTests.LeetCode.Problems
@@ -409,7 +413,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         public void IsSameTreeTest()
         {
             var testClass = new EasyQuestions();
-            var input1 = new TreeNode(1) {left = new TreeNode(2), right = new TreeNode(3)};
+            var input1 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3)};
             var input2 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3) };
             Assert.AreEqual(true, testClass.IsSameTree(input1, input2), "testcase 01 failed");
 
@@ -420,6 +424,59 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             input1 = new TreeNode(1) { right = new TreeNode(3) };
             input2 = new TreeNode(1) { left = new TreeNode(3) };
             Assert.AreEqual(false, testClass.IsSameTree(input1, input2), "testcase 03 failed");
+        }
+
+        [TestMethod]
+        public void tempTest()
+        {
+            TreeNode2 t1 = new TreeNode2(0) { Left = new TreeNode2(1), Right = new TreeNode2(2) };
+            List<int> inp = new List<int>();
+            Tree Tree1 = new Tree(inp);
+            Tree1.Root = t1;
+
+            Console.WriteLine("-------------- Test1 -------------");
+            Console.WriteLine("-------------- In Order -------------");
+            Tree1.PrintTreeInOrder(t1);
+            Console.WriteLine("\n-------------- Post Order -------------");
+            Tree1.PrintTreePostOrder(t1);
+            Console.WriteLine("\n-------------- Pre Order -------------");
+            Tree1.PrintTreePreOrder(t1);
+
+            t1 = new TreeNode2(0) { Left = new TreeNode2(1), Right = new TreeNode2(1) };
+            Console.WriteLine("\n\n-------------- Test2 -------------");
+            Console.WriteLine("-------------- In Order -------------");
+            Tree1.PrintTreeInOrder(t1);
+            Console.WriteLine("\n-------------- Post Order -------------");
+            Tree1.PrintTreePostOrder(t1);
+            Console.WriteLine("\n-------------- Pre Order -------------");
+            Tree1.PrintTreePreOrder(t1);
+
+            t1 = new TreeNode2(0) { Left = new TreeNode2(1){Left = new TreeNode2(3)}, Right = new TreeNode2(1){ Right = new TreeNode2(3)} };
+            Console.WriteLine("\n\n-------------- Test3 -------------");
+            Console.WriteLine("-------------- In Order -------------");
+            Tree1.PrintTreeInOrder(t1);
+            Console.WriteLine("\n-------------- Post Order -------------");
+            Tree1.PrintTreePostOrder(t1);
+            Console.WriteLine("\n-------------- Pre Order -------------");
+            Tree1.PrintTreePreOrder(t1);
+
+            t1 = new TreeNode2(0) { Left = new TreeNode2(1) { Left = new TreeNode2(2) }, Right = new TreeNode2(3) { Right = new TreeNode2(4) } };
+            Console.WriteLine("\n\n-------------- Test4 -------------");
+            Console.WriteLine("-------------- In Order -------------");
+            Tree1.PrintTreeInOrder(t1);
+            Console.WriteLine("\n-------------- Post Order -------------");
+            Tree1.PrintTreePostOrder(t1);
+            Console.WriteLine("\n-------------- Pre Order -------------");
+            Tree1.PrintTreePreOrder(t1);
+
+            t1 = new TreeNode2(0) { Left = new TreeNode2(1) { Left = new TreeNode2(3), Right = new TreeNode2(4)}, Right = new TreeNode2(2) { Left = new TreeNode2(5),Right = new TreeNode2(6) } };
+            Console.WriteLine("\n\n-------------- Test5 -------------");
+            Console.WriteLine("-------------- In Order -------------");
+            Tree1.PrintTreeInOrder(t1);
+            Console.WriteLine("\n-------------- Post Order -------------");
+            Tree1.PrintTreePostOrder(t1);
+            Console.WriteLine("\n-------------- Pre Order -------------");
+            Tree1.PrintTreePreOrder(t1);
         }
     }
 }

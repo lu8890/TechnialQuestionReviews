@@ -81,6 +81,24 @@ namespace lu8890.TechReviewsTests.LeetCode.Competition
             var test = new WeeklyContest130();
             RunPrefixDivBy5Tests(test.PrefixesDivBy5_3);
         }
+
+        [TestMethod]
+        public void PrefixDivBy5_4Test()
+        {
+            var test = new WeeklyContest130();
+            RunPrefixDivBy5Tests(test.PrefixesDivBy5_4);
+        }
+
+        [TestMethod]
+        public void PrefixDivBy5_5Test()
+        {
+            var test = new WeeklyContest130();
+            RunPrefixDivBy5Tests(test.PrefixesDivBy5_5);
+        }
+
+
+
+
         private void RunPrefixDivBy5Tests(PreFixDivBy5Del testFunc)
         {     
             var result = testFunc(new int[] {0, 1, 1});

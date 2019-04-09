@@ -67,6 +67,11 @@ namespace lu8890.TechReviews.LeetCode.Competition
             return Math.Round(result, 15);
         }
 
+        /// <summary>
+        /// sum inside foreach loop would go out of int64.maxvalue range
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public IList<bool> PrefixesDivBy5_2(int[] A)
         {
             Console.WriteLine(string.Join(" ", A));
@@ -82,22 +87,20 @@ namespace lu8890.TechReviews.LeetCode.Competition
 
             foreach (var bit in A)
             {
-                if ((sum << 1) < 0)
-                {
-                    sum = (sum << 1) + bit;
-                }
-                else
-                {
-                    sum = (sum << 1) + bit;
-                    result.Add(sum % 5 == 0);
-                }
-                
+                sum = (sum << 1) + bit;
+                result.Add(sum % 5 == 0);
+
                 Console.WriteLine("bit: {0} \t sum:{1}", bit, sum);
             }
 
             return result;
         }
 
+        /// <summary>
+        /// sum inside foreach loop would go out of int64.maxvalue range
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
         public IList<bool> PrefixesDivBy5_3(int[] A)
         {
             Console.WriteLine(string.Join(" ", A));
@@ -113,12 +116,60 @@ namespace lu8890.TechReviews.LeetCode.Competition
 
             foreach (var bit in A)
             {
-                sum = (sum * 2) + bit;
+                sum = ((sum * 2) + bit);
                 result.Add(sum % 5 == 0);
                 Console.WriteLine("bit: {0} \t sum:{1}", bit, sum);
             }
 
             return result;
         }
+
+        public IList<bool> PrefixesDivBy5_4(int[] A)
+        {
+            Console.WriteLine(string.Join(" ", A));
+            IList<bool> result = new List<bool>();
+
+            if ((A == null) || (A.Length == 0))
+                return result;
+
+            if (A.Length > 30000)
+                return result;
+
+            int sum = 0;
+
+            foreach (var bit in A)
+            {
+                sum = ((sum * 2) + bit) % 5;
+                result.Add(sum % 5 == 0);
+                Console.WriteLine("bit: {0} \t sum:{1}", bit, sum);
+            }
+
+            return result;
+        }
+
+        public IList<bool> PrefixesDivBy5_5(int[] A)
+        {
+            Console.WriteLine(string.Join(" ", A));
+            IList<bool> result = new List<bool>();
+
+            if ((A == null) || (A.Length == 0))
+                return result;
+
+            if (A.Length > 30000)
+                return result;
+
+            int sum = 0;
+
+            foreach (var bit in A)
+            {
+                sum = ((sum << 1) + bit) % 5;
+                result.Add(sum % 5 == 0);
+
+                Console.WriteLine("bit: {0} \t sum:{1}", bit, sum);
+            }
+
+            return result;
+        }
     }
+
 }
