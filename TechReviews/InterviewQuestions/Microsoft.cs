@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace lu8890.TechReviews.InterviewQuestions
         /// </summary>
         /// <param name="inputLinkedList"></param>
         /// <returns></returns>
-        public bool IsACirtularLinkedList(Node<int> inputLinkedList)
+        public bool IsACircularLinkedList(Node<int> inputLinkedList)
         {
             if (inputLinkedList == null)
                 return false;
@@ -66,6 +67,36 @@ namespace lu8890.TechReviews.InterviewQuestions
             }
 
             return inputLinkedList;
+        }
+        
+        /// <summary>
+        /// find first uniquie character from an input string.
+        ///   rq1: case in-sensative
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public char FindFirstUniqueChar(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return ' ';
+
+            if (input.Length == 1)
+                return input[0];
+
+            var charMap = new Dictionary<char, int>();
+            foreach (var charTarget in input.ToUpper().Trim())
+            {
+                if(!charMap.ContainsKey(charTarget))
+                    charMap.Add(charTarget, 1);
+                else
+                {
+                    ++charMap[charTarget];
+                }
+            }
+
+            var outP = charMap.FirstOrDefault(x => x.Value == 1).Key;
+
+            return (outP == 0) ? ' ' : outP;
         }
     }
 }
