@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using lu8890.TechReviews.LeetCode.Problems;
+using lu8890.TechReviews.LeetCode.Models;
+using lu8890.TechReviews.LeetCode.Problems.Medium;
 
 namespace lu8890.TechReviewsTests.LeetCode.Problems
 {

@@ -1,4 +1,6 @@
-﻿namespace lu8890.TechReviews.DataStructures
+﻿using lu8890.TechReviews.DataStructures;
+
+namespace lu8890.TechReviews.Legacy.DataStructures
 {
     public class TreeNode: Node<int>
     {

@@ -3,11 +3,12 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using lu8890.TechReviews.LeetCode.Problems;
+//using lu8890.TechReviews.LeetCode.Problems;
 using lu8890.TechReviews.DataStructures;
-using TreeNode = lu8890.TechReviews.LeetCode.Problems.TreeNode;
-using TreeNode2 = lu8890.TechReviews.DataStructures.TreeNode;
-
+using TreeNode = lu8890.TechReviews.LeetCode.Models.TreeNode;
+//using TreeNode2 = lu8890.TechReviews.DataStructures.TreeNode;
+using lu8890.TechReviews.LeetCode.Problems.Easy;
+using lu8890.TechReviews.LeetCode.Models;
 
 namespace lu8890.TechReviewsTests.LeetCode.Problems
 {
@@ -17,7 +18,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void RemoveElementTest()
         {
-            var testFunc = new EasyQuestions();
+            var testFunc = new ArrayQ();
             var testcase = new int[] {3, 2, 2, 3};
             var output = testFunc.RemoveElement(testcase, 3);
             Assert.AreEqual(2, output);
@@ -89,7 +90,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void StrStrTest()
         {
-            var testFunc = new EasyQuestions();
+            var testFunc = new ArrayQ();
             Assert.AreEqual(-1, testFunc.StrStr(string.Empty, "ll"));
             Assert.AreEqual(0, testFunc.StrStr("hello", string.Empty));
             Assert.AreEqual(0, testFunc.StrStr(string.Empty, string.Empty));
@@ -102,7 +103,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void SearchInsertTest()
         {
-            var testFunc = new EasyQuestions();
+            var testFunc = new ArrayQ();
             Assert.AreEqual(2, testFunc.SearchInsert(new int[] {1, 3, 5, 6}, 5));
             Assert.AreEqual(1, testFunc.SearchInsert(new int[] {1, 3, 5, 6}, 2));
             Assert.AreEqual(4, testFunc.SearchInsert(new int[] {1, 3, 5, 6}, 7));
@@ -113,7 +114,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void CountAndSayTest()
         {
-            var testFunc = new EasyQuestions();
+            var testFunc = new ArrayQ();
             Assert.AreEqual("0", testFunc.CountAndSay(0));
             Assert.AreEqual("1", testFunc.CountAndSay(1));
             Assert.AreEqual("11", testFunc.CountAndSay(2));
@@ -128,21 +129,21 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void MaxSubArrayTest()
         {
-            var testFunc = new MaxSubArrayTestDel(new EasyQuestions().MaxSubArray);
+            var testFunc = new MaxSubArrayTestDel(new ArrayQ().MaxSubArray);
             RunMaxSubArrayTest(testFunc);
         }
 
         [TestMethod]
         public void MaxSubArray2Test()
         {
-            var testFunc = new MaxSubArrayTestDel(new EasyQuestions().MaxSubArray2);
+            var testFunc = new MaxSubArrayTestDel(new ArrayQ().MaxSubArray2);
             RunMaxSubArrayTest(testFunc);
         }
 
         [TestMethod]
         public void MaxSubArray3Test()
         {
-            var testFunc = new MaxSubArrayTestDel(new EasyQuestions().MaxSubArray3);
+            var testFunc = new MaxSubArrayTestDel(new ArrayQ().MaxSubArray3);
             RunMaxSubArrayTest(testFunc);
         }
 
@@ -162,7 +163,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void LengthOfLastWordTest()
         {
-            var testCase = new EasyQuestions();
+            var testCase = new ArrayQ();
             Assert.AreEqual(5, testCase.LengthOfLastWord("Hello World"));
             Assert.AreEqual(0, testCase.LengthOfLastWord(""));
             Assert.AreEqual(0, testCase.LengthOfLastWord(" "));
@@ -173,7 +174,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void PlusOneTest()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             var testFunc = new PlusOneDel(p.PlusOne);
             PlusOneTestDriver(testFunc);
         }
@@ -181,7 +182,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void PlusOneTest2()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             var testFunc = new PlusOneDel(p.PlusOne2);
             PlusOneTestDriver(testFunc);
         }
@@ -234,7 +235,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void AddBinaryTest()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             Assert.AreEqual("100", p.AddBinary("1", "11"));
             Assert.AreEqual("10101", p.AddBinary("1010", "1011"));
             Assert.AreEqual("110", p.AddBinary("11", "11"));
@@ -247,28 +248,28 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void MySqrtTest()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             MySqrtDel testFunc = new MySqrtDel(p.MySqrt);
         }
 
         [TestMethod]
         public void MySqrtTest2()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             MySqrtDel testFunc = new MySqrtDel(p.MySqrt2);
         }
 
         [TestMethod]
         public void MySqrtTest3()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             MySqrtDel testFunc = new MySqrtDel(p.MySqrt3);
         }
 
         [TestMethod]
         public void MySqrtTest4()
         {
-            var p = new EasyQuestions();
+            var p = new ArrayQ();
             MySqrtDel testFunc = new MySqrtDel(p.MySqrt4);
         }
 
@@ -284,7 +285,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void ClimbStairsTest()
         {
-            var testp = new EasyQuestions();
+            var testp = new ArrayQ();
             Assert.AreEqual(1,testp.ClimbStairs(1));
             Assert.AreEqual(2, testp.ClimbStairs(2));
             Assert.AreEqual(3, testp.ClimbStairs(3));
@@ -300,7 +301,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void DeleteDuplicatesTest()
         {
-            var testp = new EasyQuestions();
+            var testp = new ArrayQ();
             var testcase = new ListNode(1);
             var result = testp.DeleteDuplicates(null);
             Assert.AreEqual(null, result);
@@ -351,7 +352,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void MergeTest()
         {
-            var testP = new EasyQuestions();
+            var testP = new ArrayQ();
             var nums1 = new int[] {1, 2, 3, 0, 0, 0};
             var m = 3;
             var nums2 = new int[] {2, 5, 6};
@@ -412,7 +413,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void IsSameTreeTest()
         {
-            var testClass = new EasyQuestions();
+            var testClass = new TreeQ();
             var input1 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3)};
             var input2 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3) };
             Assert.AreEqual(true, testClass.IsSameTree(input1, input2), "testcase 01 failed");
@@ -429,7 +430,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod]
         public void tempTest()
         {
-            TreeNode2 t1 = new TreeNode2(0) { Left = new TreeNode2(1), Right = new TreeNode2(2) };
+            var t1 = new TreeNode(0) { left = new TreeNode(1), right = new TreeNode(2) };
             List<int> inp = new List<int>();
             Tree Tree1 = new Tree(inp);
             Tree1.Root = t1;
@@ -442,7 +443,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Console.WriteLine("\n-------------- Pre Order -------------");
             Tree1.PrintTreePreOrder(t1);
 
-            t1 = new TreeNode2(0) { Left = new TreeNode2(1), Right = new TreeNode2(1) };
+            t1 = new TreeNode(0) { left = new TreeNode(1), right = new TreeNode(1) };
             Console.WriteLine("\n\n-------------- Test2 -------------");
             Console.WriteLine("-------------- In Order -------------");
             Tree1.PrintTreeInOrder(t1);
@@ -451,7 +452,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Console.WriteLine("\n-------------- Pre Order -------------");
             Tree1.PrintTreePreOrder(t1);
 
-            t1 = new TreeNode2(0) { Left = new TreeNode2(1){Left = new TreeNode2(3)}, Right = new TreeNode2(1){ Right = new TreeNode2(3)} };
+            t1 = new TreeNode(0) { left = new TreeNode(1){left = new TreeNode(3)}, right = new TreeNode(1){ right = new TreeNode(3)} };
             Console.WriteLine("\n\n-------------- Test3 -------------");
             Console.WriteLine("-------------- In Order -------------");
             Tree1.PrintTreeInOrder(t1);
@@ -460,7 +461,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Console.WriteLine("\n-------------- Pre Order -------------");
             Tree1.PrintTreePreOrder(t1);
 
-            t1 = new TreeNode2(0) { Left = new TreeNode2(1) { Left = new TreeNode2(2) }, Right = new TreeNode2(3) { Right = new TreeNode2(4) } };
+            t1 = new TreeNode(0) { left = new TreeNode(1) { left = new TreeNode(2) }, right = new TreeNode(3) { right = new TreeNode(4) } };
             Console.WriteLine("\n\n-------------- Test4 -------------");
             Console.WriteLine("-------------- In Order -------------");
             Tree1.PrintTreeInOrder(t1);
@@ -469,7 +470,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Console.WriteLine("\n-------------- Pre Order -------------");
             Tree1.PrintTreePreOrder(t1);
 
-            t1 = new TreeNode2(0) { Left = new TreeNode2(1) { Left = new TreeNode2(3), Right = new TreeNode2(4)}, Right = new TreeNode2(2) { Left = new TreeNode2(5),Right = new TreeNode2(6) } };
+            t1 = new TreeNode(0) { left = new TreeNode(1) { left = new TreeNode(3), right = new TreeNode(4)}, right = new TreeNode(2) { left = new TreeNode(5),right = new TreeNode(6) } };
             Console.WriteLine("\n\n-------------- Test5 -------------");
             Console.WriteLine("-------------- In Order -------------");
             Tree1.PrintTreeInOrder(t1);

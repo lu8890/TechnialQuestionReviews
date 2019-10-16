@@ -1,14 +1,13 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
+using lu8890.TechReviews.LeetCode.Models;
 
-namespace lu8890.TechReviews.LeetCode.Problems
+namespace lu8890.TechReviews.LeetCode.Problems.Easy
 {
-    public partial class EasyQuestions
+    public partial class ArrayQ
     {
         /// <summary>
         /// https://leetcode.com/problems/remove-element/
@@ -306,7 +305,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             var outp = output.ToString()
                 .ToCharArray()
                 .Select(x => Char.GetNumericValue(x))
-                .Select(y => (int) y)
+                .Select(y => (int)y)
                 .ToArray();
 
             return outp;
@@ -410,8 +409,8 @@ namespace lu8890.TechReviews.LeetCode.Problems
             {
                 if (traverseIndexA >= 0 && traverseIndexB >= 0)
                 {
-                    sum = (int) Char.GetNumericValue(arrayA[traverseIndexA]) +
-                          (int) Char.GetNumericValue(arrayB[traverseIndexB]);
+                    sum = (int)Char.GetNumericValue(arrayA[traverseIndexA]) +
+                          (int)Char.GetNumericValue(arrayB[traverseIndexB]);
                     if (carryOver)
                     {
                         ++sum;
@@ -441,7 +440,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 }
                 else if (traverseIndexA >= 0)
                 {
-                    sum = (int) Char.GetNumericValue(arrayA[traverseIndexA]);
+                    sum = (int)Char.GetNumericValue(arrayA[traverseIndexA]);
                     if (carryOver)
                     {
                         ++sum;
@@ -467,7 +466,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 }
                 else if (traverseIndexB >= 0)
                 {
-                    sum = (int) Char.GetNumericValue(arrayB[traverseIndexB]);
+                    sum = (int)Char.GetNumericValue(arrayB[traverseIndexB]);
                     if (carryOver)
                     {
                         ++sum;
@@ -515,7 +514,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             if ((x == 0) || (x == 1))
                 return x;
 
-            return (int) Math.Sqrt(x);
+            return (int)Math.Sqrt(x);
         }
 
         /// <summary>
@@ -574,7 +573,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 long mid = l + (r - l) / 2;
                 if (mid == x / mid)
                 {
-                    return (int) mid;
+                    return (int)mid;
                 }
                 else if (mid > x / mid)
                 {
@@ -584,43 +583,8 @@ namespace lu8890.TechReviews.LeetCode.Problems
                     l = mid + 1;
             }
 
-            return l > x / l ? (int) l - 1 : (int) l;
+            return l > x / l ? (int)l - 1 : (int)l;
         }
-
-        /// <summary>
-        /// got this solution from the discussion
-        /// this algorithm was written in C, which is having issue in C# with following statement:
-        ///     int mid = start + (end - mid) / 2;
-        /// did not know you can declare a variable and assign its value to it.... wondering how does it work..
-        /// </summary>
-        /// <param name="x"></param>
-        /// <returns></returns>
-        //public int MySqrt5(int x)
-        //{
-        //    if (x == 0 || x == 1)
-        //    {
-        //        return x;
-        //    }
-
-        //    int start = 1;
-        //    int end = x / 2;
-        //    // standard binary search template
-        //    while (start + 1 < end)
-        //    {
-        //        int mid = start + (end - mid) / 2;
-        //        // why not mid * mid <= x? because it may cause overflow when mid is very large
-        //        if (mid <= x / mid)
-        //        {
-        //            start = mid;
-        //        }
-        //        else
-        //        {
-        //            end = mid - 1;
-        //        }
-        //    }
-        //    return end <= x / end ? end : start;
-        //}
-
 
         ///https://leetcode.com/problems/climbing-stairs/submissions/
         ///Runtime: 36 ms, faster than 100.00% of C# online submissions for Climbing Stairs.
@@ -754,28 +718,5 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             nums1 = result.ToArray();
         }
-
-        /// <summary>
-        /// https://leetcode.com/problems/same-tree/
-        /// Runtime: 96 ms, faster than 58.97% of C# online submissions for Same Tree.
-        /// Memory Usage: 22.3 MB, less than 35.29% of C# online submissions for Same Tree.
-        ///
-        /// ps: this solution is from problem solution Approach 1: Recursion / Java 
-        /// </summary>
-        /// <param name="p"></param>
-        /// <param name="q"></param>
-        /// <returns></returns>
-        public bool IsSameTree(TreeNode p, TreeNode q)
-        {
-            if (p == null && q == null)
-                return true;
-            if (p == null || q == null)
-                return false;
-            if (p.val != q.val)
-                return false;
-
-            return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
-        }
-
     }
 }

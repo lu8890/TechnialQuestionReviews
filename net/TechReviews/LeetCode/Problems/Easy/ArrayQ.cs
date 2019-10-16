@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using lu8890.TechReviews.LeetCode.Models;
 
-namespace lu8890.TechReviews.LeetCode.Problems
+namespace lu8890.TechReviews.LeetCode.Problems.Easy
 {
-    public partial class EasyQuestions
+    public partial class ArrayQ
     {
-
         /// <summary>
         ///     https://leetcode.com/problems/two-sum/submissions/
         ///     Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -27,17 +28,17 @@ namespace lu8890.TechReviews.LeetCode.Problems
             var secondNumPos = -1;
             IEnumerable<int> tempArray = nums;
             //int skipCount = 0;
-            
+
             for (var i = 0; i < nums.Length - 1; i++)
             {
                 tempArray = tempArray.Skip(1);
                 //++skipCount;
 
                 if (tempArray.Contains(target - nums[i]))
-                {         
+                {
                     secondNumPos = Array.IndexOf(tempArray.ToArray(), target - nums[i]);
                     if (secondNumPos != -1)
-                        return new int[] {i, secondNumPos + i + 1};
+                        return new int[] { i, secondNumPos + i + 1 };
                 }
             }
 
@@ -64,7 +65,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
             input = inputValue.ToString().ToCharArray();
 
-            var startIndex = isNegative ? 1 : 0; 
+            var startIndex = isNegative ? 1 : 0;
             var endIndex = input.Length - 1;
             var result = new char[input.Length];
             while (startIndex <= endIndex)
@@ -77,9 +78,9 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 else
                 {
                     result[startIndex - 1] = input[endIndex];
-                    result[endIndex -1] = input[startIndex];
+                    result[endIndex - 1] = input[startIndex];
                 }
-               
+
                 ++startIndex;
                 --endIndex;
             }
@@ -95,7 +96,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             catch (OverflowException)
             {
                 return 0;
-            }          
+            }
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 {
                     if (romanValuesCol.ContainsKey(input[i]))
                     {
-                        if (romanValuesCol[input[i-1]] >= romanValuesCol[input[i]])
+                        if (romanValuesCol[input[i - 1]] >= romanValuesCol[input[i]])
                             sum += romanValuesCol[input[i]];
                         else
                             sum += (romanValuesCol[input[i]] - romanValuesCol[input[i - 1]]) - romanValuesCol[input[i - 1]];
@@ -227,7 +228,6 @@ namespace lu8890.TechReviews.LeetCode.Problems
             return output.ToString();
         }
 
-
         private static readonly Dictionary<char, char> ValidParenCol = BuildValidCharCol();
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
         private bool IsValidParan(char[] charArray)
         {
-            var openParent = new[] {'(', '{', '['};
+            var openParent = new[] { '(', '{', '[' };
             var closedParent = new[] { ')', '}', ']' };
             var trackingOpenParent = new List<char>();
 
@@ -271,7 +271,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             {
                 if ((trackingOpenParent.Count == 0) && (closedParent.Contains(t)))
                     return false;
-                if(openParent.Contains(t))
+                if (openParent.Contains(t))
                     trackingOpenParent.Add(t);
                 else if (closedParent.Contains(t))
                 {
@@ -291,7 +291,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
             return true;
         }
 
-        private static Dictionary<char,char> BuildValidCharCol()
+        private static Dictionary<char, char> BuildValidCharCol()
         {
             return new Dictionary<char, char>()
             {
@@ -331,7 +331,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 {
                     if (mergedNode == null)
                     {
-                        mergedNode = new ListNode(l1.val){ next = null};
+                        mergedNode = new ListNode(l1.val) { next = null };
                     }
                     else
                     {
@@ -349,7 +349,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 {
                     if (mergedNode == null)
                     {
-                        mergedNode = new ListNode(l2.val) { next = null };   
+                        mergedNode = new ListNode(l2.val) { next = null };
                     }
                     else
                     {
@@ -480,7 +480,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
                         }
                     }
 
-                    if (endIndex <= nums.Length -1)
+                    if (endIndex <= nums.Length - 1)
                     {
                         traverseIndex = endIndex;
                         while (traverseIndex > currentIndex + 1)
@@ -498,12 +498,12 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 }
             }
 
-            return nums.Distinct().ToArray().Length;            
+            return nums.Distinct().ToArray().Length;
         }
 
         private static bool ReachedEndOfList(int arraySize, int index)
         {
-            return index >= (arraySize -1);
+            return index >= (arraySize - 1);
         }
 
         /// <summary>
@@ -589,7 +589,7 @@ namespace lu8890.TechReviews.LeetCode.Problems
 
                 ++startIndex;
                 ++endIndex;
-                
+
             }
             return nums.Distinct().ToArray().Length;
         }
@@ -719,28 +719,6 @@ namespace lu8890.TechReviews.LeetCode.Problems
                 nums[startIndex] = nums[endIndex];
                 nums[endIndex] = tempInt;
             }
-        }
-    }
-
-
-
-
-    public class ListNode
-    {
-         public int val;
-         public ListNode next;
-         public ListNode(int x) { val = x; }
-    }
-
-    public class TreeNode
-    {
-        public int val;
-        public TreeNode left;
-        public TreeNode right;
-
-        public TreeNode(int x)
-        {
-            val = x;
         }
     }
 }

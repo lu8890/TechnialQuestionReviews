@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using lu8890.TechReviews.LeetCode.Models;
 
-namespace lu8890.TechReviews.LeetCode.Problems
+namespace lu8890.TechReviews.LeetCode.Problems.Medium
 {
     public partial class MediumQuestions
     {

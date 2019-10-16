@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using lu8890.TechReviews.LeetCode.Problems;
+using lu8890.TechReviews.LeetCode.Problems.Easy;
+using lu8890.TechReviews.LeetCode.Models;
 
 namespace lu8890.TechReviewsTests.LeetCode.Problems
 {
@@ -11,7 +12,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void TwoSumTest()
         {
-            var test = new EasyQuestions(); ;
+            var test = new ArrayQ();
             Assert.AreEqual(null, test.TwoSum(new int[] { }, 10));
             Assert.AreEqual(null, test.TwoSum(new int[] { 1 }, 10));
             Assert.AreEqual(null, test.TwoSum(new int[] { 2, 3 }, 10));
@@ -33,7 +34,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void ReverseTest()
         {
-            EasyQuestions q = new EasyQuestions();
+            var q = new ArrayQ();
             Assert.AreEqual(q.Reverse(1),1);
             Assert.AreEqual(q.Reverse(-1), -1);
             Assert.AreEqual(q.Reverse(12),21);
@@ -46,7 +47,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void IsPalindromeTest()
         {
-            EasyQuestions q = new EasyQuestions();
+            var q = new ArrayQ();
             Assert.AreEqual(q.IsPalindrome(1), true);
             Assert.AreEqual(q.IsPalindrome(-1), false);
             Assert.AreEqual(q.IsPalindrome(12), false);
@@ -60,7 +61,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void RomanToIntTest()
         {
-            EasyQuestions q = new EasyQuestions();
+            var q = new ArrayQ();
             Assert.AreEqual(q.RomanToInt("I"), 1);
             Assert.AreEqual(q.RomanToInt("i"), 1);
             Assert.AreEqual(q.RomanToInt("III"), 3);
@@ -73,7 +74,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void LongestCommonPrefixTest()
         {
-            EasyQuestions q = new EasyQuestions();
+            var q = new ArrayQ();
             var testCase = new string[] {"TotalPackage"};
             Assert.AreEqual("TotalPackage", q.LongestCommonPrefix(testCase));
             testCase = new string[]{ "flower", "flow", "flight" };
@@ -85,7 +86,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void IsValidTest()
         {
-            EasyQuestions q = new EasyQuestions();
+            var q = new ArrayQ();
             Assert.AreEqual(true, q.IsValid(""));
             Assert.AreEqual(true, q.IsValid("()"));
             Assert.AreEqual(true, q.IsValid("()[]{}"));
@@ -98,7 +99,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void MergeTwoListsTest()
         {
-            var q = new EasyQuestions();
+            var q = new ArrayQ();
             var linkedList1 = new ListNode(1) {next = new ListNode(2)};
             linkedList1.next.next = new ListNode(4);
 
@@ -136,7 +137,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void RemoveDuplicatesTest()
         {
-            var q = new EasyQuestions();
+            var q = new ArrayQ();
             var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates);
             RunRemoveDuplicateTests(test);
         }
@@ -144,7 +145,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void RemoveDuplicates2Test()
         {
-            var q = new EasyQuestions();
+            var q = new ArrayQ();
             var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates2);
             RunRemoveDuplicateTests(test);
         }
@@ -152,7 +153,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void RemoveDuplicates3Test()
         {
-            var q = new EasyQuestions();
+            var q = new ArrayQ();
             var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates3);
             RunRemoveDuplicateTests(test);
         }
@@ -160,7 +161,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         [TestMethod()]
         public void RemoveDuplicates4Test()
         {
-            var q = new EasyQuestions();
+            var q = new ArrayQ();
             var test = new RemoveDuplicateFuncTests(q.RemoveDuplicates4);
             RunRemoveDuplicateTests(test);
         }
@@ -168,7 +169,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
         public delegate int RemoveDuplicateFuncTests(int[] input);
         public void RunRemoveDuplicateTests(RemoveDuplicateFuncTests testDel)
         {
-            var q = new EasyQuestions();
+            var q = new ArrayQ();
             var testcase = new int[] { 1, 1, 2 };
             var output = testDel.Invoke(testcase);
             Assert.AreEqual(2, output);

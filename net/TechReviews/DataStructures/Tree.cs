@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TreeNode = lu8890.TechReviews.LeetCode.Models.TreeNode;
 
 namespace lu8890.TechReviews.DataStructures
 {
@@ -28,9 +29,9 @@ namespace lu8890.TechReviews.DataStructures
 
             return new TreeNode
             {
-                NodeValue = inputs[median],
-                Left = BuildBinaryTree(inputs, startIndex, median),
-                Right = BuildBinaryTree(inputs, median + 1, endIndex)
+                val = inputs[median],
+                left = BuildBinaryTree(inputs, startIndex, median),
+                right = BuildBinaryTree(inputs, median + 1, endIndex)
 
             };
         }
@@ -39,10 +40,10 @@ namespace lu8890.TechReviews.DataStructures
         {
             if (root != null)
             {
-                Console.Write("{0}\t", root.NodeValue);
-                Output.Append(string.Format("{0} ", root.NodeValue));
-                PrintTreePreOrder(root.Left);
-                PrintTreePreOrder(root.Right);
+                Console.Write("{0}\t", root.val);
+                Output.Append(string.Format("{0} ", root.val));
+                PrintTreePreOrder(root.left);
+                PrintTreePreOrder(root.right);
             }
         }
 
@@ -50,10 +51,10 @@ namespace lu8890.TechReviews.DataStructures
         {
             if (root != null)
             {
-                PrintTreePreOrder(root.Left);
-                Console.Write("{0}\t", root.NodeValue);
-                Output.Append(string.Format("{0} ", root.NodeValue));
-                PrintTreePreOrder(root.Right);
+                PrintTreePreOrder(root.left);
+                Console.Write("{0}\t", root.val);
+                Output.Append(string.Format("{0} ", root.val));
+                PrintTreePreOrder(root.right);
             }
         }
 
@@ -61,10 +62,10 @@ namespace lu8890.TechReviews.DataStructures
         {
             if (root != null)
             {
-                PrintTreePreOrder(root.Left);
-                PrintTreePreOrder(root.Right);
-                Console.Write("{0}\t", root.NodeValue);
-                Output.Append(string.Format("{0} ", root.NodeValue));
+                PrintTreePreOrder(root.left);
+                PrintTreePreOrder(root.right);
+                Console.Write("{0}\t", root.val);
+                Output.Append(string.Format("{0} ", root.val));
             }
         }
     }

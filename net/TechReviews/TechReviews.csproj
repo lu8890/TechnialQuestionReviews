@@ -53,11 +53,16 @@
     <Compile Include="LeetCode\Competition\WeeklyContest127.cs" />
     <Compile Include="GeeksForGeeks\PrintLastKNodesFromLinkedList.cs" />
     <Compile Include="LeetCode\Competition\WeeklyContest130.cs" />
-    <Compile Include="LeetCode\Problems\EasyQuestions.cs" />
-    <Compile Include="LeetCode\Problems\EasyQuestions2.cs" />
-    <Compile Include="LeetCode\Problems\MediumQuestions.cs" />
+    <Compile Include="LeetCode\Models\ListNode.cs" />
+    <Compile Include="LeetCode\Models\TreeNode.cs" />
+    <Compile Include="LeetCode\Problems\Easy\ArrayQ.cs" />
+    <Compile Include="LeetCode\Problems\Easy\ArrayQ2.cs" />
+    <Compile Include="LeetCode\Problems\Easy\TreeQ.cs" />
+    <Compile Include="LeetCode\Problems\Medium\MediumQuestions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LeetCode\Problems\Hard\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
