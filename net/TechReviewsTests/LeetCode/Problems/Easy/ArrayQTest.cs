@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.LeetCode.Problems.Easy;
 using lu8890.TechReviews.LeetCode.Models;
 
-namespace lu8890.TechReviewsTests.LeetCode.Problems
+namespace lu8890.TechReviewsTests.LeetCode.Problems.Easy
 {
     [TestClass()]
-    public class EasyQuestionsTests
+    public class ArrayQTest
     {
         [TestMethod()]
         public void TwoSumTest()

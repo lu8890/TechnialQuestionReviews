@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.LeetCode.Models;
 using lu8890.TechReviews.LeetCode.Problems.Medium;
 
-namespace lu8890.TechReviewsTests.LeetCode.Problems
+namespace lu8890.TechReviewsTests.LeetCode.Problems.Medium
 {
     [TestClass]
     public class MediumQuestionsTests

@@ -3,17 +3,16 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using lu8890.TechReviews.LeetCode.Problems;
 using lu8890.TechReviews.DataStructures;
 using TreeNode = lu8890.TechReviews.LeetCode.Models.TreeNode;
-//using TreeNode2 = lu8890.TechReviews.DataStructures.TreeNode;
 using lu8890.TechReviews.LeetCode.Problems.Easy;
 using lu8890.TechReviews.LeetCode.Models;
+using Tree = lu8890.TechReviews.LeetCode.Models.Tree;
 
-namespace lu8890.TechReviewsTests.LeetCode.Problems
+namespace lu8890.TechReviewsTests.LeetCode.Problems.Easy
 {
     [TestClass]
-    public class EasyQuestions2Tests
+    public class ArrayQ2Test
     {
         [TestMethod]
         public void RemoveElementTest()
@@ -309,14 +308,14 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             testcase = new ListNode(1){next = new ListNode(1)};
             testcase.next.next = new ListNode(2);
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1 2", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1 2", ArrayQTest.GetLinkedListItems(result));
 
             testcase = new ListNode(1) { next = new ListNode(1) };
             testcase.next.next = new ListNode(2);
             testcase.next.next.next = new ListNode(3);
             testcase.next.next.next.next = new ListNode(3);
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1 2 3", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1 2 3", ArrayQTest.GetLinkedListItems(result));
 
             testcase = new ListNode(1) { next = new ListNode(2) };
             testcase.next.next = new ListNode(3);
@@ -324,12 +323,12 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             testcase.next.next.next.next = new ListNode(2);
             testcase.next.next.next.next.next = new ListNode(3);
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1 2 3 1 2 3", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1 2 3 1 2 3", ArrayQTest.GetLinkedListItems(result));
 
             testcase = new ListNode(1) { next = new ListNode(2) };
             testcase.next.next = new ListNode(2);
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1 2", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1 2", ArrayQTest.GetLinkedListItems(result));
 
             testcase = new ListNode(1) { next = new ListNode(1) };
             testcase.next.next = new ListNode(2);
@@ -337,16 +336,16 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             testcase.next.next.next.next = new ListNode(3);
             testcase.next.next.next.next.next = new ListNode(4);
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1 2 3 4", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1 2 3 4", ArrayQTest.GetLinkedListItems(result));
 
             testcase = new ListNode(1) { next = new ListNode(1) };
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1", ArrayQTest.GetLinkedListItems(result));
 
             testcase = new ListNode(1) { next = new ListNode(1) };
             testcase.next.next = new ListNode(1);
             result = testp.DeleteDuplicates(testcase);
-            Assert.AreEqual("1", EasyQuestionsTests.GetLinkedListItems(result));
+            Assert.AreEqual("1", ArrayQTest.GetLinkedListItems(result));
         }
 
         [TestMethod]
@@ -410,22 +409,7 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems
             Assert.AreEqual("-1 0 0 1 2 2 3 3 3", string.Join(" ", nums1));
         }
 
-        [TestMethod]
-        public void IsSameTreeTest()
-        {
-            var testClass = new TreeQ();
-            var input1 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3)};
-            var input2 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3) };
-            Assert.AreEqual(true, testClass.IsSameTree(input1, input2), "testcase 01 failed");
-
-            input1 = new TreeNode(1) { left = new TreeNode(2), right = new TreeNode(3) };
-            input2 = new TreeNode(1) { left = new TreeNode(3), right = new TreeNode(2) };
-            Assert.AreEqual(false, testClass.IsSameTree(input1, input2), "testcase 02 failed");
-
-            input1 = new TreeNode(1) { right = new TreeNode(3) };
-            input2 = new TreeNode(1) { left = new TreeNode(3) };
-            Assert.AreEqual(false, testClass.IsSameTree(input1, input2), "testcase 03 failed");
-        }
+       
 
         [TestMethod]
         public void tempTest()

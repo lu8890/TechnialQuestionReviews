@@ -65,9 +65,10 @@
     <Compile Include="InterviewQuestions\Microsoft.cs" />
     <Compile Include="InterviewQuestions\Amazon.cs" />
     <Compile Include="LeetCode\Competition\WeeklyContest130Tests.cs" />
-    <Compile Include="LeetCode\Problems\EasyQuestionsTests.cs" />
-    <Compile Include="LeetCode\Problems\EasyQuestions2Tests.cs" />
-    <Compile Include="LeetCode\Problems\MediumQuestionsTests.cs" />
+    <Compile Include="LeetCode\Problems\Easy\ArrayQTest.cs" />
+    <Compile Include="LeetCode\Problems\Easy\ArrayQ2Test.cs" />
+    <Compile Include="LeetCode\Problems\Easy\TreeQTest.cs" />
+    <Compile Include="LeetCode\Problems\Medium\MediumQuestionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +80,9 @@
       <Name>TechReviews</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LeetCode\Problems\Hard\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
