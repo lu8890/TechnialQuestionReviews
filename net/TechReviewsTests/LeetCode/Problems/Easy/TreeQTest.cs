@@ -94,6 +94,14 @@ namespace lu8890.TechReviewsTests.LeetCode.Problems.Easy
             CollectionAssert.AreEqual(expectedOutput, oCol, "Testcase 03 Failed");
 
         }
+
+        [TestMethod]
+        public void SortedArrayToBSTTest()
+        {
+            var testclass = new TreeQ();
+            var input = new int[] { -10, -3, 0, 5, 9};
+            var output = testclass.SortedArrayToBST(input);
+        }
     }
 
 }

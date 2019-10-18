@@ -107,5 +107,29 @@ namespace lu8890.TechReviews.LeetCode.Problems.Easy
                 RunLevelOrderBottom(root.right, NodeLevel);
             }
         }
+
+        /// <summary>
+        /// https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public TreeNode SortedArrayToBST(int[] nums)
+        {
+            return RunSortedArrayToBST(0, nums.Length - 1, nums);
+        }
+
+        private TreeNode RunSortedArrayToBST(int startIndex, int endIndex, int[] inputs)
+        {
+            if (startIndex > endIndex)
+                return null;
+
+            var midIndex = startIndex + (endIndex - startIndex) / 2;
+            var newNode = new TreeNode(inputs[midIndex]);
+            newNode.left = RunSortedArrayToBST(startIndex, midIndex - 1, inputs);
+            newNode.right = RunSortedArrayToBST(midIndex + 1, endIndex, inputs);
+
+            return newNode;
+        }
     }
 }
