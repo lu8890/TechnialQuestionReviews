@@ -110,7 +110,9 @@ namespace lu8890.TechReviews.LeetCode.Problems.Easy
 
         /// <summary>
         /// https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
-
+        /// #108
+        /// Runtime: 100 ms, faster than 72.32% of C# online submissions for Convert Sorted Array to Binary Search Tree.
+        /// Memory Usage: 24.6 MB, less than 25.00% of C# online submissions for Convert Sorted Array to Binary Search Tree.
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
