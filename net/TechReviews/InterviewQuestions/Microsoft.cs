@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using lu8890.TechReviews.DataStructures;
+using System.Collections;
+
 
 namespace lu8890.TechReviews.InterviewQuestions
 {
@@ -68,7 +70,7 @@ namespace lu8890.TechReviews.InterviewQuestions
 
             return inputLinkedList;
         }
-        
+
         /// <summary>
         /// find first uniquie character from an input string.
         ///   rq1: case in-sensative
@@ -86,7 +88,7 @@ namespace lu8890.TechReviews.InterviewQuestions
             var charMap = new Dictionary<char, int>();
             foreach (var charTarget in input.ToUpper().Trim())
             {
-                if(!charMap.ContainsKey(charTarget))
+                if (!charMap.ContainsKey(charTarget))
                     charMap.Add(charTarget, 1);
                 else
                 {
@@ -98,5 +100,83 @@ namespace lu8890.TechReviews.InterviewQuestions
 
             return (outP == 0) ? ' ' : outP;
         }
+
+        /// <summary>
+        /// Implement a function that will take an list of strings, and find anagrams among the inputs
+        /// And return a list of string lists 
+        /// </summary>
+        /// <param name="inputs"></param>
+        /// <returns></returns>
+        public List<List<string>> FindAnagrams(string[] inputs)
+        {
+            if ((inputs == null) || (inputs.Length == 0))
+                throw new NullReferenceException();
+
+            var output = new Dictionary<string, List<string>>();
+            foreach(var input in inputs)
+            {
+                var key = string.Concat(input.ToUpperInvariant().OrderBy(x => x));
+
+                if (!output.ContainsKey(key))
+                    output.Add(key.ToString(), new List<string>());
+
+                output[key].Add(input);                    
+            }
+
+            var result = new List<List<string>>(); 
+            foreach(var key in output.Keys)
+            {
+                result.Add(output[key]);
+            }
+
+            return result;
+        }
+    
+    }
+
+    /// <summary>
+    /// Implement a Queue class using stack functionality
+    /// </summary>
+    public class Microsoft_Interview_Queue
+    {
+        private System.Collections.Generic.Stack<int> Queue { get; set; }
+        public int Count { get { return Queue.Count(); } }
+
+        public Microsoft_Interview_Queue()
+        {
+            Queue = null;
+        }
+
+        public void Enqueue(int inputValue)
+        {
+            if (Queue == null)
+                Queue = new System.Collections.Generic.Stack<int>();
+
+            Queue.Push(inputValue);
+        }
+
+        public int Dequeue()
+        {
+            if ((Queue == null) || (Queue.Count == 0))
+                throw new NullReferenceException();
+
+            if (Queue.Count == 1)
+                return Queue.Pop();
+
+            var reversedQueue = new System.Collections.Generic.Stack<int>();
+
+            while ((Queue.Count != 0) && (Queue != null))
+                reversedQueue.Push(Queue.Pop());
+
+            var poppedValue = reversedQueue.Pop();
+
+            while ((reversedQueue.Count != 0) && (reversedQueue != null))
+                Queue.Push(reversedQueue.Pop());
+
+
+
+            return poppedValue;
+        }
+
     }
 }

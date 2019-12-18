@@ -7,6 +7,8 @@
 
         }
 
+
+
         public Stack(T[] inputs)
         {
             foreach (var input in inputs)
