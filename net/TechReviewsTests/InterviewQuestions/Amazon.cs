@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using lu8890.TechReviews.InterviewQuestions;
 
-namespace lu8890.TechReviewsTests.InterviewQuestions
+namespace lu8890.TechReviewsTests.InterviewQuestions.Tests
 {
     [TestClass]
     public class Amazon

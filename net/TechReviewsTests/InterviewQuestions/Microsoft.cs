@@ -3,7 +3,7 @@ using lu8890.TechReviews.DataStructures;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MS = lu8890.TechReviews.InterviewQuestions.Microsoft;
 
-namespace lu8890.TechReviewsTests.InterviewQuestions
+namespace lu8890.TechReviewsTests.InterviewQuestions.Tests
 {
     [TestClass]
     public class Microsoft
