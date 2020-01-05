@@ -3,7 +3,6 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using lu8890.TechReviews.DataStructures;
 using TreeNode = lu8890.TechReviews.LeetCode.Models.TreeNode;
 using lu8890.TechReviews.LeetCode.Problems.Easy;
 using lu8890.TechReviews.LeetCode.Models;
