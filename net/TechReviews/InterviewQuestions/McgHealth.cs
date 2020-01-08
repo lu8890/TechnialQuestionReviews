@@ -75,21 +75,11 @@ namespace lu8890.TechReviews.InterviewQuestions
             if (((hour < 0) || (hour > 12)) || ((min < 0) || (min > 60)))
                 throw new ArgumentException();
 
-            var Output = string.Empty;
-            if (min == 0)
-            {
-                Output = $"{hour}:{min} {GetTimeInString(hour)} o'clock";
-            }
-            else if (min <= 30)
-            {
-                Output = $"{hour}:{min} {GetTimeInString(min)} past {GetTimeInString(hour)}";
-            }
-            else
-            {
-                Output = $"{hour}:{min} {GetTimeInString(min)} to {GetTimeInString(++hour)}";
-            }
-
-            return Output;
+            return (min == 0)
+                    ? $"{hour}:{min} {GetTimeInString(hour)} o'clock"
+                    : (min <= 30)
+                        ? $"{hour}:{min} {GetTimeInString(min)} past {GetTimeInString(hour)}"
+                        : $"{hour}:{min} {GetTimeInString(min)} to {GetTimeInString(++hour)}";
         }
 
         private string GetTimeInString(int num)
