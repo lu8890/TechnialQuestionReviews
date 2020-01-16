@@ -71,6 +71,7 @@
     <Compile Include="LeetCode\Problems\Easy\TreeQTest.cs" />
     <Compile Include="LeetCode\Problems\Medium\MediumQuestionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TheModernCppChallenge\Ch1_MathProblems\Ch01Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
